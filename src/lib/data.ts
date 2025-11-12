@@ -1,72 +1,51 @@
 
-import { BrainCircuit, Cpu, FlaskConical, Microscope, Orbit, Stethoscope } from "lucide-react";
-
-export const Testimonials = [
-  {
-    quote: "Praverse Tech's AI platform reduced our response time to regulatory inquiries by 75%. It's a game-changer for our compliance team.",
-    name: "Dr. Anya Sharma",
-    title: "QA Head, Top 10 Pharma Co.",
-    avatarId: "avatar-1",
-  },
-  {
-    quote: "The HealthMate kiosk has streamlined our patient intake process, freeing up our nurses to focus on care. Patient feedback has been overwhelmingly positive.",
-    name: "Rajesh Kumar",
-    title: "Administrator, Apollo Hospitals",
-    avatarId: "avatar-2",
-  },
-  {
-    quote: "As an investor in HealthTech, I look for companies with deep domain expertise and a clear vision. Praverse Tech has both in spades. Their technology is robust and their team is world-class.",
-    name: "Priya Singh",
-    title: "Partner, HealthTech Ventures",
-    avatarId: "avatar-3",
-  },
-];
-
+import { BrainCircuit, Cpu, FlaskConical, Microscope, Orbit, Stethoscope, Atom, ShieldCheck, Sigma } from "lucide-react";
 
 export const DOMAINS = [
     {
-        title: 'AI for Pharma',
+        title: 'AI for Pharma & Regulatory Automation',
         description: 'Compliance automation, data integrity, and FDA 483 analytics.',
         href: '/pharma-ai',
         icon: FlaskConical,
         color: 'text-purple-400',
     },
     {
-        title: 'HealthMate Humanoid',
+        title: 'Humanoid Robotics (HealthMate Series)',
         description: 'Intelligent assistive robot for healthcare & education.',
         href: '/healthmate',
         icon: Stethoscope,
         color: 'text-green-400',
     },
     {
-        title: 'Cognitive Robotics Lab',
-        description: 'Locomotion, gesture recognition, and real-world simulation.',
-        href: '/humanoid-robotics',
-        icon: BrainCircuit,
-        color: 'text-blue-400',
+        title: 'Federated Learning & Edge AI',
+        description: 'Decentralized model training for privacy-sensitive data.',
+        href: null,
+        icon: ShieldCheck,
+        color: 'text-pink-400',
     },
     {
-        title: 'Neural Vision Systems',
+        title: 'Vision & Medical Imaging',
         description: 'CV + NLP fusion for industrial safety & medical imaging.',
-        href: '/domains',
+        href: null,
         icon: Microscope,
         color: 'text-teal-400',
     },
     {
-        title: 'Digital Twin & Simulation',
-        description: 'Physics-based virtual environments for R&D.',
-        href: '/domains',
-        icon: Orbit,
+        title: 'AIoT & Industrial Intelligence',
+        description: 'Smart sensors and predictive maintenance with Intel collaboration.',
+        href: null,
+        icon: Cpu,
         color: 'text-orange-400',
     },
     {
-        title: 'Edge AI & IoT',
-        description: 'Lightweight ML models for embedded systems.',
-        href: '/domains',
-        icon: Cpu,
-        color: 'text-pink-400',
+        title: 'Biochip Initiative',
+        description: 'Exploring next-gen diagnostics at the intersection of biology and silicon.',
+        href: null,
+        icon: Atom,
+        color: 'text-blue-400',
     }
 ];
+
 
 export const FEATURED_PROJECTS = [
     { title: 'HealthMate v0.9', description: 'Private Beta Launching Soon', imageId: 'project-healthmate' },
@@ -75,6 +54,38 @@ export const FEATURED_PROJECTS = [
     { title: 'Federated Learning for Wearables', description: 'Research Collaboration', imageId: 'project-federated' },
     { title: 'Smart EHR Assistant', description: 'Under Testing', imageId: 'project-ehr' },
 ];
+
+export const TIMELINE = [
+  { year: '2023', event: 'Netra Sakhi', description: 'AI-powered diabetic retinopathy screening tool launched.' },
+  { year: '2024', event: 'PCOS Detection', description: 'Developed a novel CV model for early PCOS detection from ultrasound images.' },
+  { year: '2025', event: 'HealthMate Patent & Intel Collaboration', description: 'Filed key patents for HealthMate and began our strategic collaboration with Intel.' },
+  { year: '2026', event: 'Biochip Prototype Research', description: 'Initiated R&D for a new class of diagnostic biochips.' },
+  { year: '2027', event: 'Cognitive AI Ecosystem Launch', description: 'Projected launch of our integrated platform for industrial and healthcare AI.' },
+];
+
+export const PUBLICATIONS = [
+  { 
+    title: 'Deep Learning for Diabetic Macular Edema (DME) Detection', 
+    venue: 'IEEE Transactions on Medical Imaging', 
+    year: '2023',
+    abstract: 'A novel convolutional neural network architecture for the automated detection and grading of DME from retinal fundus images, achieving 98% accuracy.',
+    badge: 'IEEE'
+  },
+  { 
+    title: 'Netra Sakhi: An Edge AI System for Ophthalmic Screening in Low-Resource Settings', 
+    venue: 'Scopus Indexed Conference', 
+    year: '2023',
+    abstract: 'This paper presents a lightweight, deployable edge AI system for screening multiple eye diseases, designed for rural healthcare camps.',
+    badge: 'Scopus'
+  },
+  { 
+    title: 'Autonomous Driving Simulation using Neuroevolution of Augmenting Topologies (NEAT)', 
+    venue: 'International Journal of Robotics and Automation', 
+    year: '2024',
+    abstract: 'We demonstrate the effectiveness of the NEAT algorithm in training agents for complex, multi-objective autonomous driving scenarios in simulation.',
+    badge: 'Journal'
+  },
+]
 
 export const TECH_STACK = [
     'Generative AI × Regulatory Compliance',

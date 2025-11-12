@@ -4,6 +4,7 @@ import { motion, useMotionValue, useMotionTemplate, animate } from 'framer-motio
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 const COLORS = ["#6D28D9", "#06B6D4", "#D946EF"];
 
@@ -35,7 +36,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-primary-foreground"
         >
-          Shaping the Intelligent Future.
+          Engineering Human-Centered Intelligence.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +44,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-primary-foreground/80"
         >
-          From Pharma AI to Humanoid Robotics, Praverse Tech pioneers intelligent systems that learn, adapt & elevate human capability.
+          From Pharma AI to Humanoid Robotics and Federated Learning — Praverse Tech pioneers systems that learn, perceive, and collaborate.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,10 +53,10 @@ export function Hero() {
           className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Button asChild size="lg" variant="secondary">
-            <Link href="#domains">Explore Our Domains</Link>
+            <Link href="#domains">Explore AI Domains <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-background">
-            <Link href="/contact">Partner With Us</Link>
+            <Link href="/healthmate">Meet HealthMate (Coming Soon)</Link>
           </Button>
         </motion.div>
       </div>

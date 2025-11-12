@@ -52,25 +52,25 @@ export function Domains() {
           viewport={{ once: true, amount: 0.5 }}
         >
           {DOMAINS.map((domain) => (
-            <motion.div key={domain.title} variants={itemVariants}>
-              <Link href={domain.href} className="group block h-full">
-                <Card className="h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-2xl hover:-translate-y-2">
+            <motion.div key={domain.title} variants={itemVariants} className="[perspective:1000px]">
+              <Card className="h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:[transform:rotateY(5deg)_rotateX(5deg)]">
                   <CardHeader>
                     <div className="flex items-center gap-4">
-                      <domain.icon className={cn("w-10 h-10 transition-colors", domain.color, "group-hover:text-primary")} />
+                      <div className="p-3 bg-primary/10 rounded-full">
+                        <domain.icon className={cn("w-8 h-8 transition-colors", domain.color)} />
+                      </div>
                       <CardTitle className="text-xl">{domain.title}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardDescription className="px-6 pb-6 text-sm flex-grow">
                     {domain.description}
                   </CardDescription>
-                   <div className="px-6 pb-4">
-                      <div className="text-sm font-semibold text-primary flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        Explore Domain <ArrowRight className="w-4 h-4" />
-                      </div>
-                   </div>
+                   {domain.href && <div className="px-6 pb-4 mt-auto">
+                      <Link href={domain.href} className="text-sm font-semibold text-primary flex items-center gap-2 group">
+                        Learn More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                   </div>}
                 </Card>
-              </Link>
             </motion.div>
           ))}
         </motion.div>

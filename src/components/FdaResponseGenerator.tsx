@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from 'react';
-import { streamFlow } from '@genkit-ai/core/client';
 import { generateFDA483Response, type GenerateFDA483ResponseOutput } from '@/ai/flows/generate-fda-response';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -20,13 +19,9 @@ export function FdaResponseGenerator() {
     setStatus('loading');
     setOutput(undefined);
 
-    const stream = await streamFlow(generateFDA483Response, { fda483WarningLetter: fdaLetter });
+    const result = await generateFDA483Response({ fda483WarningLetter: fdaLetter });
 
-    for await (const chunk of stream) {
-      if (chunk.output) {
-        setOutput(chunk.output as GenerateFDA483ResponseOutput);
-      }
-    }
+    setOutput(result);
     setStatus('idle');
   };
   

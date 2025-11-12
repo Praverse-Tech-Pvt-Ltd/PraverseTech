@@ -25,13 +25,6 @@ const leadership = [
   },
 ];
 
-const timeline = [
-  { year: '2021', event: 'Praverse Tech founded in Bangalore with a mission to build domain-smart AI.' },
-  { year: '2022', event: 'Launched our first AI for Pharma compliance module, focusing on FDA 483 responses.' },
-  { year: '2023', event: 'Unveiled the HealthMate Kiosk prototype, winning the "HealthTech Innovation of the Year" award.' },
-  { year: '2024', event: 'Expanded our team and secured seed funding to scale our operations globally.' },
-];
-
 const values = [
     { icon: <Target className="h-8 w-8 text-primary"/>, title: 'Customer Obsession', description: 'We succeed when our customers succeed. We deeply embed ourselves in their domain to solve their most critical problems.'},
     { icon: <Award className="h-8 w-8 text-primary"/>, title: 'Expertise & Trust', description: 'We are experts in our field and build trust through transparency, security, and delivering on our promises.'},
@@ -117,38 +110,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-muted">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold">Our Journey</h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">A brief history of Praverse Tech's milestones.</p>
-          </div>
-          <div className="relative max-w-2xl mx-auto">
-            <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-border"></div>
-            {timeline.map((item, index) => (
-              <div key={index} className="relative mb-8 flex justify-center">
-                <div className={`w-1/2 ${index % 2 === 0 ? 'text-right pr-8' : 'pl-8'}`}>
-                  {index % 2 !== 0 && (
-                    <>
-                      <h3 className="font-bold text-lg">{item.year}</h3>
-                      <p className="text-muted-foreground">{item.event}</p>
-                    </>
-                  )}
-                </div>
-                <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary ring-4 ring-muted"></div>
-                <div className={`w-1/2 ${index % 2 !== 0 ? 'text-left pl-8' : 'pr-8'}`}>
-                  {index % 2 === 0 && (
-                     <>
-                      <h3 className="font-bold text-lg text-left pl-8">{item.year}</h3>
-                      <p className="text-muted-foreground text-left pl-8">{item.event}</p>
-                    </>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

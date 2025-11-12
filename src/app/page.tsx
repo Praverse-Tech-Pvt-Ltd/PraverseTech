@@ -3,12 +3,13 @@ import React from 'react';
 import { Hero } from '@/components/home/Hero';
 import { Vision } from '@/components/home/Vision';
 import { Domains } from '@/components/home/Domains';
-import { FeaturedProjects } from '@/components/home/FeaturedProjects';
-import { TechStack } from '@/components/home/TechStack';
-import { WhyPraverse } from '@/components/home/WhyPraverse';
-import { Insights } from '@/components/home/Insights';
 import { Cta } from '@/components/home/Cta';
 import { getBlogPosts } from '@/lib/blog';
+import { PravChatbot } from '@/components/home/PravChatbot';
+import { InnovationTimeline } from '@/components/home/InnovationTimeline';
+import { ResearchPublications } from '@/components/home/ResearchPublications';
+import { Collaborations } from '@/components/home/Collaborations';
+import { AILabsShowcase } from '@/components/home/AILabsShowcase';
 
 export default function Home() {
   const posts = getBlogPosts().slice(0, 3);
@@ -19,12 +20,13 @@ export default function Home() {
         <Hero />
         <Vision />
         <Domains />
-        <FeaturedProjects />
-        <TechStack />
-        <WhyPraverse />
-        <Insights posts={posts} />
+        <AILabsShowcase />
+        <InnovationTimeline />
+        <ResearchPublications />
+        <Collaborations />
         <Cta />
+        <PravChatbot />
       </main>
     </div>
-  )
+  );
 }

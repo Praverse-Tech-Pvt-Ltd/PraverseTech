@@ -4,10 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { WaitlistDialog } from '@/components/healthmate/WaitlistDialog';
 
 export function Cta() {
-  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   return (
     <section className="py-20 md:py-28">
@@ -29,11 +27,11 @@ export function Cta() {
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-primary">
-                <Link href="/contact">Collaborate With Us</Link>
+                <Link href="/contact">Collaborate With Praverse AI Labs</Link>
               </Button>
-              <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90">Join Waitlist for HealthMate</Button>
-              </WaitlistDialog>
+              <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
+                 <Link href="/contact">Intern / Partner with Us</Link>
+              </Button>
             </div>
           </div>
         </motion.div>

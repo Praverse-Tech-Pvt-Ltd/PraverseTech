@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from 'react';
-import { streamFlow } from '@genkit-ai/core/client';
 import { generateBlogIdeas, type GenerateBlogIdeasOutput } from '@/ai/flows/generate-blog-ideas';
 import { Button } from '@/components/ui/button';
 import { Wand2 } from 'lucide-react';
@@ -19,13 +18,8 @@ export function BlogIdeasGenerator() {
     setStatus('loading');
     setOutput(undefined);
 
-    const stream = await streamFlow(generateBlogIdeas, { topic, numIdeas: 3 });
-
-    for await (const chunk of stream) {
-        if (chunk.output) {
-            setOutput(chunk.output as GenerateBlogIdeasOutput);
-        }
-    }
+    const result = await generateBlogIdeas({ topic, numIdeas: 3 });
+    setOutput(result);
     setStatus('idle');
   };
 
