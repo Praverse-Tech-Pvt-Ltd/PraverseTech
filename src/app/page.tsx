@@ -1,4 +1,5 @@
 
+import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -163,7 +164,7 @@ export default function Home() {
                 </ul>
                 <Button asChild>
                   <Link href="/healthmate">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                Button>
+                </Button>
                 <div className="aspect-video bg-background rounded-lg p-4 border relative mt-4">
                    <p className="text-sm text-muted-foreground">Live demo of HealthMate. Shows patient triage process.</p>
                    {PlaceHolderImages.find(p => p.id === 'healthmate-demo') && 
