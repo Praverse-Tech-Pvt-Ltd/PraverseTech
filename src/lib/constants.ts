@@ -1,7 +1,7 @@
 
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
-  { href: '/domains', label: 'Domains' },
+  { href: '/#domains', label: 'Domains' },
   { href: '/healthmate', label: 'HealthMate' },
   { href: '/about', label: 'About Us' },
   { href: '/blog', label: 'Insights' },

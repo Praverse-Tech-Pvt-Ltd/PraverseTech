@@ -48,21 +48,21 @@ export const DOMAINS = [
     {
         title: 'Neural Vision Systems',
         description: 'CV + NLP fusion for industrial safety & medical imaging.',
-        href: '/domains/neural-vision',
+        href: '/domains',
         icon: Microscope,
         color: 'text-teal-400',
     },
     {
         title: 'Digital Twin & Simulation',
         description: 'Physics-based virtual environments for R&D.',
-        href: '/domains/digital-twin',
+        href: '/domains',
         icon: Orbit,
         color: 'text-orange-400',
     },
     {
         title: 'Edge AI & IoT',
         description: 'Lightweight ML models for embedded systems.',
-        href: '/domains/edge-ai',
+        href: '/domains',
         icon: Cpu,
         color: 'text-pink-400',
     }
