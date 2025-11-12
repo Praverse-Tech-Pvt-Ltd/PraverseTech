@@ -13,7 +13,7 @@ export default function TermsPage() {
       <h2>2. Intellectual Property Rights</h2>
       <p>
         The Site and its original content, features, and functionality are owned by Praverse Tech Pvt Ltd and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
-      p>
+      </p>
 
       <h2>3. User Representations</h2>
       <p>
