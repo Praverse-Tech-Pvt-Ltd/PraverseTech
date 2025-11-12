@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState } from 'react';
-import { useStreamFlow } from '@genkit-ai/nextjs/client';
+import { streamFlow } from '@genkit-ai/next/client';
 import { generateBlogIdeas, type GenerateBlogIdeasOutput } from '@/ai/flows/generate-blog-ideas';
 import { Button } from '@/components/ui/button';
 import { Wand2 } from 'lucide-react';
@@ -10,13 +11,25 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 export function BlogIdeasGenerator() {
   const [topic, setTopic] = useState('AI in Pharma');
-  const {stream, start, status, output} = useStreamFlow(generateBlogIdeas);
+  const [output, setOutput] = useState<GenerateBlogIdeasOutput | undefined>();
+  const [status, setStatus] = useState<'idle' | 'loading'>('idle');
+
 
   const handleGenerate = async () => {
-    await start({ topic, numIdeas: 3 });
+    setStatus('loading');
+    setOutput(undefined);
+
+    const stream = await streamFlow(generateBlogIdeas, { topic, numIdeas: 3 });
+
+    for await (const chunk of stream) {
+        if (chunk.output) {
+            setOutput(chunk.output as GenerateBlogIdeasOutput);
+        }
+    }
+    setStatus('idle');
   };
 
-  const generating = status === 'loading' || status === 'streaming';
+  const generating = status === 'loading';
   const response = output;
 
   return (
