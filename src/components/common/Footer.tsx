@@ -8,19 +8,28 @@ import { Button } from '@/components/ui/button';
 import { SOCIAL_LINKS, NAV_LINKS } from '@/lib/constants';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import { WaitlistDialog } from '../healthmate/WaitlistDialog';
+import { NewsletterForm } from './NewsletterForm';
 
 export function Footer() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
+  const footerLinks = [
+    { href: '/about', label: 'About' },
+    { href: '/pharma-ai', label: 'Domains' },
+    { href: '/careers', label: 'Careers' },
+    { href: '/contact', label: 'Press' },
+    { href: '/contact', label: 'Contact' },
+  ]
+
   return (
-    <footer className="border-t bg-muted">
+    <footer className="border-t bg-muted/50">
       <div className="container py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div className="space-y-4 md:col-span-1">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
+          <div className="space-y-4 md:col-span-4">
             <Logo />
-            <p className="text-sm text-muted-foreground">Domain-smart AI for Pharma & Healthcare.</p>
+            <p className="text-sm text-muted-foreground">Innovation in AI & Robotics.</p>
             <address className="text-sm text-muted-foreground not-italic">
-              Bangalore, India
+              Bangalore, India | Global Operations
             </address>
             <div className="flex space-x-4">
               <Link href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
@@ -34,11 +43,11 @@ export function Footer() {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-8 md:col-span-2">
+          <div className="grid grid-cols-2 gap-8 md:col-span-4">
             <div>
-              <h3 className="font-semibold">Navigation</h3>
+              <h3 className="font-semibold">Quick Links</h3>
               <ul className="mt-4 space-y-2">
-                {NAV_LINKS.map(link => (
+                {footerLinks.map(link => (
                   <li key={link.href}>
                     <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground">
                       {link.label}
@@ -57,12 +66,10 @@ export function Footer() {
               </ul>
             </div>
           </div>
-          <div className="space-y-4 md:col-span-1">
-            <h3 className="font-semibold">Be the first to know</h3>
-            <p className="text-sm text-muted-foreground">Join the waitlist for HealthMate and get exclusive updates.</p>
-            <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-              <Button>Join Waitlist</Button>
-            </WaitlistDialog>
+          <div className="space-y-4 md:col-span-4">
+            <h3 className="font-semibold">Subscribe to our newsletter</h3>
+            <p className="text-sm text-muted-foreground">Get the latest on our research, products, and insights.</p>
+            <NewsletterForm />
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">

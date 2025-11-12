@@ -101,6 +101,48 @@
       "description": "A dark, premium hero with a silhouetted humanoid outline and a soft glow.",
       "imageUrl": "https://images.unsplash.com/photo-1728218948405-d749e7d1851e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aHVtYW5vaWQlMjBzaWxob3VldHRlfGVufDB8fHx8MTc2Mjk2ODE3NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "humanoid silhouette"
+    },
+    {
+      "id": "project-healthmate",
+      "imageUrl": "https://images.unsplash.com/photo-1560724797-bf78e981d20d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyb2JvdCUyMGhlYWx0aGNhcmV8ZW58MHx8fHwxNzYyOTcyMDE4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Healthmate Project",
+      "imageHint": "robot healthcare"
+    },
+    {
+      "id": "project-fda",
+      "imageUrl": "https://images.unsplash.com/photo-1579196421658-a33fd14663f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb21wbGlhbmNlJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2Mjk3MjAxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "FDA Project",
+      "imageHint": "compliance dashboard"
+    },
+    {
+      "id": "project-robotics",
+      "imageUrl": "https://images.unsplash.com/photo-1651530065437-9d961dc5e8d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm9ib3QlMjBzaW11bGF0aW9ufGVufDB8fHx8MTc2Mjk3MjAxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Robotics Project",
+      "imageHint": "robot simulation"
+    },
+    {
+      "id": "project-federated",
+      "imageUrl": "https://images.unsplash.com/photo-1758577515333-e71b713059f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3ZWFyYWJsZSUyMGRhdGF8ZW58MHx8fHwxNzYyOTcyMDE4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Federated Learning Project",
+      "imageHint": "wearable data"
+    },
+    {
+      "id": "project-ehr",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwcmVjb3JkfGVufDB8fHx8MTc2Mjk3MjAxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EHR Project",
+      "imageHint": "medical record"
+    },
+    {
+      "id": "home-hero-bg",
+      "imageUrl": "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Abstract background image for the hero section",
+      "imageHint": "abstract circuits"
+    },
+    {
+      "id": "home-vision-bg",
+      "imageUrl": "https://images.unsplash.com/photo-1554034483-74b0232501a5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Abstract background image for the vision section",
+      "imageHint": "abstract gradient"
     }
   ]
 }

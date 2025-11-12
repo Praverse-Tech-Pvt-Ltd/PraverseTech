@@ -1,0 +1,64 @@
+
+'use client'
+import { motion, useMotionValue, useMotionTemplate, animate } from 'framer-motion';
+import { useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+
+const COLORS = ["#6D28D9", "#06B6D4", "#D946EF"];
+
+export function Hero() {
+  const color = useMotionValue(COLORS[0]);
+  const backgroundImage = useMotionTemplate`radial-gradient(35% 35% at 50% 50%, #0B132B 0%, transparent 100%), radial-gradient(100% 100% at 50% 50%, transparent 40%, ${color} 100%)`;
+
+  useEffect(() => {
+    animate(color, COLORS, {
+      ease: "easeInOut",
+      duration: 10,
+      repeat: Infinity,
+      repeatType: "mirror",
+    });
+  }, [color]);
+  
+  return (
+    <section className="relative w-full py-32 md:py-48 lg:py-56 overflow-hidden">
+       <motion.div
+        style={{ backgroundImage }}
+        className="absolute inset-0 z-0"
+      />
+      <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+
+      <div className="container relative z-10 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-primary-foreground"
+        >
+          Shaping the Intelligent Future.
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+          className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-primary-foreground/80"
+        >
+          From Pharma AI to Humanoid Robotics, Praverse Tech pioneers intelligent systems that learn, adapt & elevate human capability.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+          className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <Button asChild size="lg" variant="secondary">
+            <Link href="#domains">Explore Our Domains</Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-background">
+            <Link href="/contact">Partner With Us</Link>
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
