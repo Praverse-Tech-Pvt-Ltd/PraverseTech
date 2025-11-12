@@ -1,6 +1,8 @@
-import type {NextConfig} from 'next';
 
-const nextConfig: NextConfig = {
+import createMDX from '@next/mdx';
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,
@@ -30,6 +32,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    // providerImportSource: "@mdx-js/react",
+  },
+});
+
+export default withMDX(nextConfig);

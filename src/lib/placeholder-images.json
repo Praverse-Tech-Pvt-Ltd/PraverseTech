@@ -1,3 +1,82 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-abstract",
+      "description": "Abstract swirling blue and teal shapes representing AI",
+      "imageUrl": "https://images.unsplash.com/photo-1711831521065-e546a5aca68e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGFpfGVufDB8fHx8MTc2Mjk2MjQzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract ai"
+    },
+    {
+      "id": "pharma-demo",
+      "description": "A placeholder image for a pharma compliance software demo",
+      "imageUrl": "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzb2Z0d2FyZSUyMGRhc2hib2FyZHxlbnwwfHx8fDE3NjI4NjEyMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software dashboard"
+    },
+    {
+      "id": "healthmate-demo",
+      "description": "A placeholder image for a healthcare kiosk interface",
+      "imageUrl": "https://images.unsplash.com/photo-1642364706738-1334b13c66a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxraW9zayUyMGludGVyZmFjZXxlbnwwfHx8fDE3NjI5NjI0MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kiosk interface"
+    },
+    {
+      "id": "avatar-1",
+      "description": "Professional headshot of a woman",
+      "imageUrl": "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2Mjg4ODYyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "avatar-2",
+      "description": "Professional headshot of a man",
+      "imageUrl": "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI5NTI2MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "avatar-3",
+      "description": "Professional headshot of a woman",
+      "imageUrl": "https://images.unsplash.com/photo-1692869439847-80c355a2b7f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHBvcnRyYWl0JTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc2Mjk2MjQzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait professional"
+    },
+    {
+      "id": "about-mission",
+      "description": "An abstract image representing vision and mission",
+      "imageUrl": "https://images.unsplash.com/photo-1605106702842-01a887a31122?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMHNoYXBlc3xlbnwwfHx8fDE3NjI4OTEwODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract shapes"
+    },
+    {
+      "id": "pharma-hero",
+      "description": "Image of a modern pharmaceutical laboratory",
+      "imageUrl": "https://images.unsplash.com/photo-1639772823849-6efbd173043c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaGFybWFjZXV0aWNhbCUyMGxhYm9yYXRvcnl8ZW58MHx8fHwxNzYyOTUzNDE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pharmaceutical laboratory"
+    },
+    {
+      "id": "contact-hero",
+      "description": "Image of office building in India",
+      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBidWlsZGluZ3xlbnwwfHx8fDE3NjI5NjI0MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "office building"
+    },
+    {
+      "id": "blog-post-1",
+      "description": "Abstract AI neurons",
+      "imageUrl": "https://images.unsplash.com/photo-1678214239868-9371ba839628?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhaSUyMG5ldXJvbnN8ZW58MHx8fHwxNzYyOTYyNDM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ai neurons"
+    },
+    {
+      "id": "blog-post-2",
+      "description": "Doctor using a tablet",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkb2N0b3IlMjB0YWJsZXR8ZW58MHx8fHwxNzYyOTYyMTA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "doctor tablet"
+    },
+    {
+      "id": "leadership-1",
+      "description": "Portrait of a CEO",
+      "imageUrl": "https://images.unsplash.com/photo-1546572797-e8c933a75a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFuJTIwY2VvfGVufDB8fHx8MTc2Mjk2MjQzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man ceo"
+    },
+    {
+      "id": "leadership-2",
+      "description": "Portrait of a CTO",
+      "imageUrl": "https://picsum.photos/seed/113/400/400",
+      "imageHint": "woman cto"
+    }
+  ]
 }

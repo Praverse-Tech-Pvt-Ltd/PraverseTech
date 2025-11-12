@@ -1,0 +1,44 @@
+
+"use server";
+
+import { z } from "zod";
+
+const newsletterSchema = z.object({
+  email: z.string().email(),
+});
+
+export async function subscribeToNewsletter(data: z.infer<typeof newsletterSchema>) {
+  const validatedFields = newsletterSchema.safeParse(data);
+
+  if (!validatedFields.success) {
+    return { success: false, message: "Invalid email address." };
+  }
+  
+  // Here you would typically save the email to a database (e.g., Firestore)
+  // For demonstration, we'll just log it and return success.
+  console.log("New newsletter subscription:", validatedFields.data.email);
+
+  return { success: true, message: "Successfully subscribed!" };
+}
+
+const contactFormSchema = z.object({
+    name: z.string().min(2, "Name must be at least 2 characters."),
+    email: z.string().email("Invalid email address."),
+    company: z.string().optional(),
+    message: z.string().min(10, "Message must be at least 10 characters."),
+    interest: z.string(),
+});
+
+export async function submitContactForm(data: z.infer<typeof contactFormSchema>) {
+    const validatedFields = contactFormSchema.safeParse(data);
+
+    if (!validatedFields.success) {
+        return { success: false, message: "Invalid form data." };
+    }
+
+    // Here you would typically save the data to Firestore and send an email
+    // via a Cloud Function.
+    console.log("New contact form submission:", validatedFields.data);
+
+    return { success: true, message: "Your message has been sent!" };
+}
