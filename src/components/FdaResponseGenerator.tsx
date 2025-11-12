@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useStreamFlow } from '@genkit-ai/react';
+import { useStreamFlow } from '@genkit-ai/nextjs/client';
 import { generateFDA483Response, type GenerateFDA483ResponseOutput } from '@/ai/flows/generate-fda-response';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
