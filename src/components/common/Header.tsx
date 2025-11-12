@@ -11,10 +11,12 @@ import { cn } from '@/lib/utils';
 import { NAV_LINKS } from '@/lib/constants';
 import { Logo } from './Logo';
 import { ThemeToggle } from '../ui/theme-toggle';
+import { WaitlistDialog } from '../healthmate/WaitlistDialog';
 
 export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,9 +59,11 @@ export function Header() {
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-2">
           <ThemeToggle />
-          <Button asChild className="hidden sm:inline-flex" variant="secondary">
-            <Link href="/contact">Book a call</Link>
-          </Button>
+          <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
+            <Button asChild className="hidden sm:inline-flex" variant="secondary">
+              <button>Join Waitlist</button>
+            </Button>
+          </WaitlistDialog>
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>

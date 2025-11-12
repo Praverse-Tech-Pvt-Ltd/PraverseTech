@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "HmWaitlist": {
@@ -6,10 +7,6 @@
       "type": "object",
       "description": "Represents a user who has joined the HealthMate waitlist.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the waitlist entry."
-        },
         "name": {
           "type": "string",
           "description": "Name of the person joining the waitlist."
@@ -42,7 +39,6 @@
         }
       },
       "required": [
-        "id",
         "name",
         "email",
         "org",
@@ -58,10 +54,6 @@
       "type": "object",
       "description": "Represents a request for an NDA briefing on HealthMate.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the briefing request."
-        },
         "name": {
           "type": "string",
           "description": "Name of the person requesting the briefing."
@@ -99,7 +91,6 @@
         }
       },
       "required": [
-        "id",
         "name",
         "email",
         "org",
@@ -116,10 +107,6 @@
       "type": "object",
       "description": "Represents a request for a media kit for HealthMate.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the media request."
-        },
         "name": {
           "type": "string",
           "description": "Name of the person requesting the media kit."
@@ -148,7 +135,6 @@
         }
       },
       "required": [
-        "id",
         "name",
         "email",
         "publication",
@@ -163,14 +149,9 @@
       "type": "object",
       "description": "Represents a milestone in the HealthMate timeline.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the timeline entry."
-        },
         "date": {
           "type": "string",
-          "description": "Date or timeframe of the milestone.",
-          "format": "date-time"
+          "description": "Date or timeframe of the milestone."
         },
         "description": {
           "type": "string",
@@ -178,7 +159,6 @@
         }
       },
       "required": [
-        "id",
         "date",
         "description"
       ]
@@ -189,10 +169,6 @@
       "type": "object",
       "description": "Represents a frequently asked question about HealthMate.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the FAQ entry."
-        },
         "question": {
           "type": "string",
           "description": "The question being asked."
@@ -203,7 +179,6 @@
         }
       },
       "required": [
-        "id",
         "question",
         "answer"
       ]
@@ -214,17 +189,12 @@
       "type": "object",
       "description": "Represents a press note about HealthMate.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the press note."
-        },
         "content": {
           "type": "string",
           "description": "The content of the press note."
         }
       },
       "required": [
-        "id",
         "content"
       ]
     }
@@ -232,108 +202,46 @@
   "auth": {
     "providers": [
       "password",
-      "anonymous"
+      "anonymous",
+      "emailLink"
     ]
   },
   "firestore": {
-    "structure": [
-      {
-        "path": "/hm_waitlist/{waitlistId}",
-        "definition": {
-          "entityName": "HmWaitlist",
-          "schema": {
-            "$ref": "#/backend/entities/HmWaitlist"
-          },
-          "description": "Stores entries for users who have joined the HealthMate waitlist. Write-only via Cloud Function. Enforces server-side validation.",
-          "params": [
-            {
-              "name": "waitlistId",
-              "description": "Unique identifier for the waitlist entry."
-            }
-          ]
-        }
+    "hm_waitlist/{waitlistId}": {
+      "schema": {
+        "$ref": "#/entities/HmWaitlist"
       },
-      {
-        "path": "/hm_briefings/{briefingId}",
-        "definition": {
-          "entityName": "HmBriefing",
-          "schema": {
-            "$ref": "#/backend/entities/HmBriefing"
-          },
-          "description": "Stores requests for NDA briefings on HealthMate. Write-only via Cloud Function. Enforces server-side validation.",
-          "params": [
-            {
-              "name": "briefingId",
-              "description": "Unique identifier for the briefing request."
-            }
-          ]
-        }
+      "description": "Stores entries for users who have joined the HealthMate waitlist."
+    },
+    "hm_briefings/{briefingId}": {
+      "schema": {
+        "$ref": "#/entities/HmBriefing"
       },
-      {
-        "path": "/hm_media_requests/{mediaRequestId}",
-        "definition": {
-          "entityName": "HmMediaRequest",
-          "schema": {
-            "$ref": "#/backend/entities/HmMediaRequest"
-          },
-          "description": "Stores requests for media kits for HealthMate. Write-only via Cloud Function. Enforces server-side validation.",
-          "params": [
-            {
-              "name": "mediaRequestId",
-              "description": "Unique identifier for the media request."
-            }
-          ]
-        }
+      "description": "Stores requests for NDA briefings on HealthMate."
+    },
+    "hm_media_requests/{mediaRequestId}": {
+      "schema": {
+        "$ref": "#/entities/HmMediaRequest"
       },
-      {
-        "path": "/hm_timeline/{timelineId}",
-        "definition": {
-          "entityName": "HmTimeline",
-          "schema": {
-            "$ref": "#/backend/entities/HmTimeline"
-          },
-          "description": "Stores timeline milestones for HealthMate. CRUD operations via admin panel.",
-          "params": [
-            {
-              "name": "timelineId",
-              "description": "Unique identifier for the timeline entry."
-            }
-          ]
-        }
+      "description": "Stores requests for media kits for HealthMate."
+    },
+    "hm_timeline/{timelineId}": {
+      "schema": {
+        "$ref": "#/entities/HmTimeline"
       },
-      {
-        "path": "/hm_faq/{faqId}",
-        "definition": {
-          "entityName": "HmFaq",
-          "schema": {
-            "$ref": "#/backend/entities/HmFaq"
-          },
-          "description": "Stores frequently asked questions about HealthMate. CRUD operations via admin panel.",
-          "params": [
-            {
-              "name": "faqId",
-              "description": "Unique identifier for the FAQ entry."
-            }
-          ]
-        }
+      "description": "Stores timeline milestones for HealthMate. Can be managed by an admin."
+    },
+    "hm_faq/{faqId}": {
+      "schema": {
+        "$ref": "#/entities/HmFaq"
       },
-      {
-        "path": "/hm_press_note/{pressNoteId}",
-        "definition": {
-          "entityName": "HmPressNote",
-          "schema": {
-            "$ref": "#/backend/entities/HmPressNote"
-          },
-          "description": "Stores press notes about HealthMate. CRUD operations via admin panel.",
-          "params": [
-            {
-              "name": "pressNoteId",
-              "description": "Unique identifier for the press note."
-            }
-          ]
-        }
-      }
-    ],
-    "reasoning": "The Firestore data structure is designed to support the HealthMate stealth launch, focusing on lead capture, controlled information release, and easy content management while strictly adhering to the principles of Authorization Independence and QAPs. All writes are secured via Cloud Functions to prevent direct client access and enforce server-side validation, which ensures data integrity and IP protection. The structure leverages segregation and explicit state modeling to simplify security rules and enhance debuggability.\n\n**Authorization Independence:** Achieved by exclusively using `request.auth.uid` within the Cloud Functions, as all data is written server-side and does not rely on client-side authorization. The structure avoids any `get()` calls within the rules, thus ensuring atomic operations.\n\n**QAPs (Rules are not Filters):** The structure enables secure `list` operations on public content (timeline, FAQ, press notes) while restricting write access. All sensitive data (waitlist, briefing requests, media requests) are write-only via Cloud Functions, preventing unauthorized access. The `/admin` section (not directly represented in the data structure but implied by the CMS needs) would be protected by Firebase Authentication and potentially a dedicated `/roles_admin/{uid}` collection (DBAC - Existence over Content), ensuring only authorized users can modify CMS content.\n\nThe data related to the HealthMate product launch (waitlist entries, briefing requests, media requests, timeline, FAQ, and press notes) are stored in dedicated collections at the root level to maintain separation and prevent accidental exposure of internal information. The separation supports the need for different security levels, with lead capture data strictly controlled and CMS data accessible only to authorized admins. The CMS data (timeline, FAQ, press notes) may be read by the public, thus requiring no ownership or membership models."
+      "description": "Stores frequently asked questions about HealthMate. Can be managed by an admin."
+    },
+    "hm_press_note/{pressNoteId}": {
+      "schema": {
+        "$ref": "#/entities/HmPressNote"
+      },
+      "description": "Stores press notes about HealthMate. Can be managed by an admin."
+    }
   }
 }

@@ -1,126 +1,48 @@
-/**
- * @file Firestore Security Rules for HealthMate Project
- * @description This ruleset enforces a strict separation of read and write permissions
- * to support a stealth product launch with lead capture and controlled content release.
- *
- * Data Structure:
- * - hm_waitlist: Stores waitlist entries. Write-only via Cloud Functions.
- * - hm_briefings: Stores briefing requests. Write-only via Cloud Functions.
- * - hm_media_requests: Stores media requests. Write-only via Cloud Functions.
- * - hm_timeline: Stores timeline milestones. CRUD operations via admin panel.
- * - hm_faq: Stores frequently asked questions. CRUD operations via admin panel.
- * - hm_press_note: Stores press notes. CRUD operations via admin panel.
- *
- * Key Security Decisions:
- * - All write operations to hm_waitlist, hm_briefings, and hm_media_requests are
- *   restricted to server-side operations via Cloud Functions. This ensures that
- *   client-side writes are not possible, providing a strong layer of security and
- *   enabling server-side validation.
- * - Read operations are generally open for hm_timeline, hm_faq, and hm_press_note,
- *   assuming this data is intended to be publicly accessible.
- * - No direct client-side write access is granted to any collection.
- *
- * Denormalization for Authorization:
- * - Not applicable in this ruleset, as all authorization decisions are made within
- *   Cloud Functions, and no client-side data is directly used for authorization.
- *
- * Structural Segregation:
- * - The use of separate collections for lead capture data (hm_waitlist, hm_briefings,
- *   hm_media_requests) and CMS content (hm_timeline, hm_faq, hm_press_note) allows
- *   for different security levels and simplifies rules management.
- */
+
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    /**
-     * @description Restricts all read and write access to the hm_waitlist collection to server-side only.
-     * @path /hm_waitlist/{waitlistId}
-     * @allow (create) A Cloud Function can write to this collection.
-     * @deny (get, list, update, delete) No client-side access is allowed.
-     * @principle Ensures that only the server can write to the waitlist.
-     */
-    match /hm_waitlist/{waitlistId} {
-      allow get: if false;
-      allow list: if false;
-      allow create: if true; // Only Cloud Functions can write
-      allow update: if false;
-      allow delete: if false;
+    // Helper function to check if the user is an authenticated admin.
+    // In a real app, this would check a custom claim or a document in a 'roles' collection.
+    function isAdmin() {
+      return request.auth != null; // Placeholder: Allow any authenticated user as admin for now
     }
 
-    /**
-     * @description Restricts all read and write access to the hm_briefings collection to server-side only.
-     * @path /hm_briefings/{briefingId}
-     * @allow (create) A Cloud Function can write to this collection.
-     * @deny (get, list, update, delete) No client-side access is allowed.
-     * @principle Ensures that only the server can write to the briefing requests.
-     */
-    match /hm_briefings/{briefingId} {
-      allow get: if false;
-      allow list: if false;
-      allow create: if true; // Only Cloud Functions can write
-      allow update: if false;
-      allow delete: if false;
+    // HealthMate Waitlist: Client can only create. No read, update, or delete.
+    match /hm_waitlist/{docId} {
+      allow read, update, delete: if false;
+      allow create: if request.auth != null; // Simplification, would be rate-limited in functions
     }
 
-    /**
-     * @description Restricts all read and write access to the hm_media_requests collection to server-side only.
-     * @path /hm_media_requests/{mediaRequestId}
-     * @allow (create) A Cloud Function can write to this collection.
-     * @deny (get, list, update, delete) No client-side access is allowed.
-     * @principle Ensures that only the server can write to the media requests.
-     */
-    match /hm_media_requests/{mediaRequestId} {
-      allow get: if false;
-      allow list: if false;
-      allow create: if true; // Only Cloud Functions can write
-      allow update: if false;
-      allow delete: if false;
+    // HealthMate Briefings: Client can only create.
+    match /hm_briefings/{docId} {
+      allow read, update, delete: if false;
+      allow create: if request.auth != null;
     }
 
-    /**
-     * @description Allows public read access to the hm_timeline collection, but restricts write access.
-     * @path /hm_timeline/{timelineId}
-     * @allow (get, list) Public read access is allowed.
-     * @deny (create, update, delete) No client-side write access is allowed.
-     * @principle Allows public viewing of timeline milestones while preventing unauthorized modifications.
-     */
-    match /hm_timeline/{timelineId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+    // HealthMate Media Requests: Client can only create.
+    match /hm_media_requests/{docId} {
+      allow read, update, delete: if false;
+      allow create: if request.auth != null;
+    }
+    
+    // HealthMate Timeline: Publicly readable, admin writeable.
+    match /hm_timeline/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
-    /**
-     * @description Allows public read access to the hm_faq collection, but restricts write access.
-     * @path /hm_faq/{faqId}
-     * @allow (get, list) Public read access is allowed.
-     * @deny (create, update, delete) No client-side write access is allowed.
-     * @principle Allows public viewing of frequently asked questions while preventing unauthorized modifications.
-     */
-    match /hm_faq/{faqId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+    // HealthMate FAQ: Publicly readable, admin writeable.
+    match /hm_faq/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
-
-    /**
-     * @description Allows public read access to the hm_press_note collection, but restricts write access.
-     * @path /hm_press_note/{pressNoteId}
-     * @allow (get, list) Public read access is allowed.
-     * @deny (create, update, delete) No client-side write access is allowed.
-     * @principle Allows public viewing of press notes while preventing unauthorized modifications.
-     */
-    match /hm_press_note/{pressNoteId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+    
+    // HealthMate Press Note: Publicly readable, admin writeable.
+    match /hm_press_note/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }

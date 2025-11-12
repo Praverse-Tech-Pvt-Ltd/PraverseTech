@@ -2,45 +2,15 @@
 "use client";
 
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useState } from 'react';
 import { Logo } from '@/components/common/Logo';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { useToast } from '@/hooks/use-toast';
 import { SOCIAL_LINKS, NAV_LINKS } from '@/lib/constants';
 import { Github, Linkedin, Twitter } from 'lucide-react';
-import { subscribeToNewsletter } from '@/app/actions';
-
-const newsletterSchema = z.object({
-  email: z.string().email({ message: 'Please enter a valid email.' }),
-});
+import { WaitlistDialog } from '../healthmate/WaitlistDialog';
 
 export function Footer() {
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof newsletterSchema>>({
-    resolver: zodResolver(newsletterSchema),
-    defaultValues: { email: '' },
-  });
-
-  async function onSubmit(values: z.infer<typeof newsletterSchema>) {
-    const result = await subscribeToNewsletter(values);
-    if (result.success) {
-      toast({
-        title: 'Subscribed!',
-        description: "Thanks for joining our newsletter. Look out for updates in your inbox.",
-      });
-      form.reset();
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Something went wrong.',
-        description: result.message,
-      });
-    }
-  }
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   return (
     <footer className="border-t bg-muted">
@@ -82,33 +52,22 @@ export function Footer() {
               <ul className="mt-4 space-y-2">
                 <li><Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">Terms of Service</Link></li>
                 <li><Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">Privacy Policy</Link></li>
+                <li><Link href="/healthmate-terms" className="text-sm text-muted-foreground hover:text-foreground">HealthMate Terms</Link></li>
+                <li><Link href="/healthmate-privacy" className="text-sm text-muted-foreground hover:text-foreground">HealthMate Privacy</Link></li>
               </ul>
             </div>
           </div>
           <div className="space-y-4 md:col-span-1">
-            <h3 className="font-semibold">Subscribe to our newsletter</h3>
-            <p className="text-sm text-muted-foreground">Get the latest on AI in pharma and health-tech.</p>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-2">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem className="flex-1">
-                      <FormControl>
-                        <Input placeholder="Enter your email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" disabled={form.formState.isSubmitting}>Subscribe</Button>
-              </form>
-            </Form>
+            <h3 className="font-semibold">Be the first to know</h3>
+            <p className="text-sm text-muted-foreground">Join the waitlist for HealthMate and get exclusive updates.</p>
+            <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
+              <Button>Join Waitlist</Button>
+            </WaitlistDialog>
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Praverse Tech Pvt Ltd. All rights reserved.
+          <p>© {new Date().getFullYear()} Praverse Tech Pvt Ltd. All rights reserved.</p>
+          <p className="mt-2">HealthMate is proprietary and patent-pending. Details available under NDA.</p>
         </div>
       </div>
     </footer>
