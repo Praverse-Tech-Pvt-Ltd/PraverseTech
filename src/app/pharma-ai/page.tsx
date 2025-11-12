@@ -92,7 +92,7 @@ export default function PharmaAiPage() {
               <Badge>Live Demo</Badge>
               <h2 className="text-3xl md:text-4xl font-bold mt-4">FDA 483 Response Generator</h2>
               <p className="mt-4 text-muted-foreground text-lg">
-                Experience the power of PraverseAI. Paste the text of an FDA 483 observation below and watch our AI generate a structured, compliant draft response in seconds.
+                Experience the power of Praverse Tech. Paste the text of an FDA 483 observation below and watch our AI generate a structured, compliant draft response in seconds.
               </p>
                <div className="mt-8 p-6 border rounded-lg bg-background">
                 <FdaResponseGenerator />
@@ -126,7 +126,7 @@ export default function PharmaAiPage() {
             </CardHeader>
             <CardContent className="text-center max-w-3xl mx-auto">
               <p className="text-muted-foreground">
-                PraverseAI's tools are designed to align with industry best practices and guidelines such as USFDA 21 CFR Part 211, ICH Q9 (Quality Risk Management), and ICH Q10 (Pharmaceutical Quality System). Our platform acts as a powerful assistant, augmenting the expertise of your QA and RA teams. All AI-generated outputs are intended as drafts and require final review and approval by qualified personnel. We do not make any legal claims of guaranteed compliance.
+                Praverse Tech's tools are designed to align with industry best practices and guidelines such as USFDA 21 CFR Part 211, ICH Q9 (Quality Risk Management), and ICH Q10 (Pharmaceutical Quality System). Our platform acts as a powerful assistant, augmenting the expertise of your QA and RA teams. All AI-generated outputs are intended as drafts and require final review and approval by qualified personnel. We do not make any legal claims of guaranteed compliance.
               </p>
               <Button asChild className="mt-6">
                 <Link href="/contact">Discuss Your Compliance Needs <ArrowRight className="ml-2 h-4 w-4" /></Link>

@@ -7,7 +7,7 @@ import { Footer } from '@/components/common/Footer';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'PraverseAI - Domain-Smart AI for Pharma & Healthcare',
+  title: 'Praverse Tech - Domain-Smart AI for Pharma & Healthcare',
   description: 'Praverse Tech helps pharma & healthcare teams automate compliance and patient workflows with safe, explainable AI.',
 };
 

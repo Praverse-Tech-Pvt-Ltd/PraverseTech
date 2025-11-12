@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${post.metadata.title} | PraverseAI Blog`,
+    title: `${post.metadata.title} | Praverse Tech Blog`,
     description: post.metadata.excerpt,
     openGraph: {
         title: post.metadata.title,

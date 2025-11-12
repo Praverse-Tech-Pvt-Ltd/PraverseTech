@@ -4,9 +4,9 @@ import React from 'react';
 export const Logo = ({ className }: { className?: string }) => (
   <svg
     className={className}
-    width="150"
+    width="160"
     height="36"
-    viewBox="0 0 150 36"
+    viewBox="0 0 160 36"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -19,7 +19,7 @@ export const Logo = ({ className }: { className?: string }) => (
       className="fill-foreground"
     >
       Praverse
-      <tspan className="fill-secondary">AI</tspan>
+      <tspan className="fill-secondary">Tech</tspan>
     </text>
   </svg>
 );

@@ -9,7 +9,7 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BlogIdeasGenerator } from '@/components/blog/BlogIdeasGenerator';
 
 export const metadata = {
-  title: 'Blog | PraverseAI',
+  title: 'Blog | Praverse Tech',
   description: 'Insights and articles on AI in Pharma, Healthcare, and Technology.',
 };
 

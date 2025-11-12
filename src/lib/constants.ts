@@ -2,6 +2,7 @@
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/pharma-ai', label: 'AI for Pharma' },
+  { href: '/humanoid-robotics', label: 'Humanoid Robotics' },
   { href: '/healthmate', label: 'HealthMate' },
   { href: '/about', label: 'About Us' },
   { href: '/blog', label: 'Blog' },

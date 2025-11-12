@@ -77,6 +77,24 @@
       "description": "Portrait of a CTO",
       "imageUrl": "https://picsum.photos/seed/113/400/400",
       "imageHint": "woman cto"
+    },
+    {
+      "id": "humanoid-hero",
+      "description": "A futuristic humanoid robot looking at a screen with data",
+      "imageUrl": "https://images.unsplash.com/photo-1666597107756-ef489e9f1f09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxodW1hbm9pZCUyMHJvYm90fGVufDB8fHx8MTc2Mjg4MDAzOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "humanoid robot"
+    },
+    {
+      "id": "humanoid-assist",
+      "description": "A humanoid robot assisting a person in a lab",
+      "imageUrl": "https://images.unsplash.com/photo-1641973841580-7834af051f6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyb2JvdCUyMGFzc2lzdGFuY2V8ZW58MHx8fHwxNzYyOTY2OTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "robot assistance"
+    },
+    {
+      "id": "humanoid-virtual",
+      "description": "A virtual reality interface showing the internals of a humanoid robot",
+      "imageUrl": "https://images.unsplash.com/photo-1630397512069-0377e0044f46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2aXJ0dWFsJTIwcm9ib3RpY3N8ZW58MHx8fHwxNzYyOTY2OTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "virtual robotics"
     }
   ]
 }

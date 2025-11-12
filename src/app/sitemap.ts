@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [
     '/',
     '/pharma-ai',
+    '/humanoid-robotics',
     '/healthmate',
     '/about',
     '/blog',
