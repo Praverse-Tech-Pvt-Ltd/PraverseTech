@@ -50,7 +50,7 @@ export default function BlogPage() {
                       <div className="md:w-2/3">
                         <CardHeader>
                           <div className="flex gap-2 mb-2">
-                            {post.metadata.tags.map(tag => (
+                            {post.metadata.tags && post.metadata.tags.map(tag => (
                               <Badge key={tag} variant="secondary">{tag}</Badge>
                             ))}
                           </div>

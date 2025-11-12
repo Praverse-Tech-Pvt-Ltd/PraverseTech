@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
         )}
         <div className="container relative z-10 text-center">
           <div className="flex justify-center gap-2 mb-4">
-            {post.metadata.tags.map(tag => (
+            {post.metadata.tags && post.metadata.tags.map(tag => (
               <Badge key={tag} variant="secondary" className="text-sm">{tag}</Badge>
             ))}
           </div>
