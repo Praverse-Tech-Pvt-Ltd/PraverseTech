@@ -2,8 +2,8 @@
 "use client";
 
 import { useState } from 'react';
-import { useFlow } from '@genkit-ai/next/client';
-import { generateFDA483Response } from '@/ai/flows/generate-fda-response';
+import { useStreamFlow } from '@genkit-ai/next/client';
+import { generateFDA483Response, type GenerateFDA483ResponseOutput } from '@/ai/flows/generate-fda-response';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,12 +12,15 @@ import { ScrollArea } from './ui/scroll-area';
 
 export function FdaResponseGenerator() {
   const [fdaLetter, setFdaLetter] = useState('');
-  const [generate, generating, response] = useFlow(generateFDA483Response);
+  const {stream, start, status, output} = useStreamFlow(generateFDA483Response);
 
   const handleGenerate = async () => {
     if (!fdaLetter) return;
-    await generate({ fda483WarningLetter: fdaLetter });
+    await start({ fda483WarningLetter: fdaLetter });
   };
+  
+  const generating = status === 'loading' || status === 'streaming';
+  const response = output;
 
   const sampleLetter = `OBSERVATION 1
 Procedures for sterile drug products are not established and followed.
@@ -43,7 +46,7 @@ Your firm failed to perform smoke studies under dynamic conditions to demonstrat
         </Button>
       </div>
 
-      {generating && (
+      {generating && !response && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -72,7 +75,7 @@ Your firm failed to perform smoke studies under dynamic conditions to demonstrat
             </ScrollArea>
           </CardContent>
            <CardFooter>
-            <Button>Copy to Clipboard</Button>
+            <Button onClick={() => navigator.clipboard.writeText(response.draftResponse)}>Copy to Clipboard</Button>
           </CardFooter>
         </Card>
       )}

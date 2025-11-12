@@ -2,21 +2,23 @@
 "use client";
 
 import { useState } from 'react';
-import { useFlow } from '@genkit-ai/next/client';
-import { generateBlogIdeas } from '@/ai/flows/generate-blog-ideas';
+import { useStreamFlow } from '@genkit-ai/next/client';
+import { generateBlogIdeas, type GenerateBlogIdeasOutput } from '@/ai/flows/generate-blog-ideas';
 import { Button } from '@/components/ui/button';
 import { Wand2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Badge } from '../ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
 export function BlogIdeasGenerator() {
   const [topic, setTopic] = useState('AI in Pharma');
-  const [generate, generating, response] = useFlow(generateBlogIdeas);
+  const {stream, start, status, output} = useStreamFlow(generateBlogIdeas);
 
   const handleGenerate = async () => {
-    await generate({ topic, numIdeas: 3 });
+    await start({ topic, numIdeas: 3 });
   };
+
+  const generating = status === 'loading' || status === 'streaming';
+  const response = output;
 
   return (
     <Card className="bg-primary/5">
@@ -46,7 +48,7 @@ export function BlogIdeasGenerator() {
                 </Button>
             </div>
             
-            {generating && <p className="text-sm text-muted-foreground">Generating...</p>}
+            {generating && !response && <p className="text-sm text-muted-foreground">Generating...</p>}
             
             {response && (
                 <div className="space-y-2 pt-4">
