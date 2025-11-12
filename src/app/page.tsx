@@ -42,9 +42,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg"
+                  fill
+                  className="object-cover rounded-lg"
                   data-ai-hint={heroImage.imageHint}
                 />
               }
@@ -140,9 +139,8 @@ export default function Home() {
                      <Image
                        src={PlaceHolderImages.find(p => p.id === 'pharma-demo')?.imageUrl!}
                        alt={PlaceHolderImages.find(p => p.id === 'pharma-demo')?.description!}
-                       layout="fill"
-                       objectFit="contain"
-                       className="rounded-md"
+                       fill
+                       className="object-contain rounded-md"
                        data-ai-hint={PlaceHolderImages.find(p => p.id === 'pharma-demo')?.imageHint}
                      />
                    }
@@ -171,9 +169,8 @@ export default function Home() {
                      <Image
                        src={PlaceHolderImages.find(p => p.id === 'healthmate-demo')?.imageUrl!}
                        alt={PlaceHolderImages.find(p => p.id === 'healthmate-demo')?.description!}
-                       layout="fill"
-                       objectFit="contain"
-                       className="rounded-md"
+                       fill
+                       className="object-contain rounded-md"
                        data-ai-hint={PlaceHolderImages.find(p => p.id === 'healthmate-demo')?.imageHint}
                      />
                    }

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { FdaResponseGenerator } from '@/components/FdaResponseGenerator';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/componentsaui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, CheckCircle, FileText, GanttChartSquare, Layers, Search } from 'lucide-react';
 import Link from 'next/link';
@@ -49,9 +49,8 @@ export default function PharmaAiPage() {
           <Image 
             src={heroImage.imageUrl} 
             alt={heroImage.description} 
-            layout="fill" 
-            objectFit="cover" 
-            className="opacity-20"
+            fill
+            className="object-cover opacity-20"
             data-ai-hint={heroImage.imageHint}
           />
         }

@@ -70,9 +70,8 @@ export default async function BlogPostPage({ params }: Props) {
           <Image
             src={image.imageUrl}
             alt={post.metadata.title}
-            layout="fill"
-            objectFit="cover"
-            className="opacity-20"
+            fill
+            className="object-cover opacity-20"
             data-ai-hint={image.imageHint}
             priority
           />
@@ -92,7 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
               </Avatar>
               <span>{post.metadata.author}</span>
             </div>
-            <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4"/>{new Date(post.metadata.date).toLocaleDate an('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4"/>{new Date(post.metadata.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             <span className="flex items-center gap-1.5"><Clock className="h-4 w-4"/>{post.readingTime}</span>
           </div>
         </div>
