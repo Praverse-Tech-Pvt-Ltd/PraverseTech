@@ -1,9 +1,7 @@
-
 import createMDX from '@next/mdx';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   images: {
     remotePatterns: [
       {
@@ -16,13 +14,13 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    allowedDevOrigins: [
+      '6000-firebase-studio-1762961632094.cluster-wurh6gchdjcjmwrw2tqtufvhss.cloudworkstations.dev',
+    ],
+  },
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-});
+const withMDX = createMDX({});
 
 export default withMDX(nextConfig);
