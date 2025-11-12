@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from 'react';
-import { streamFlow } from '@genkit-ai/next/client';
+import { streamFlow } from '@genkit-ai/core/client';
 import { generateBlogIdeas, type GenerateBlogIdeasOutput } from '@/ai/flows/generate-blog-ideas';
 import { Button } from '@/components/ui/button';
 import { Wand2 } from 'lucide-react';
