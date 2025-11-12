@@ -8,8 +8,11 @@ import { TechStack } from '@/components/home/TechStack';
 import { WhyPraverse } from '@/components/home/WhyPraverse';
 import { Insights } from '@/components/home/Insights';
 import { Cta } from '@/components/home/Cta';
+import { getBlogPosts } from '@/lib/blog';
 
 export default function Home() {
+  const posts = getBlogPosts().slice(0, 3);
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
@@ -19,7 +22,7 @@ export default function Home() {
         <FeaturedProjects />
         <TechStack />
         <WhyPraverse />
-        <Insights />
+        <Insights posts={posts} />
         <Cta />
       </main>
     </div>

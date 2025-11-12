@@ -1,6 +1,6 @@
 
 'use client'
-import { getBlogPosts, Post } from "@/lib/blog";
+import { Post } from "@/lib/blog";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import Link from "next/link";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -9,9 +9,11 @@ import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { motion } from "framer-motion";
 
-export function Insights() {
-    const posts = getBlogPosts().slice(0, 3); // Get latest 3 posts
+interface InsightsProps {
+    posts: Post[];
+}
 
+export function Insights({ posts }: InsightsProps) {
     return (
         <section className="py-20 md:py-28 bg-background">
             <div className="container">
