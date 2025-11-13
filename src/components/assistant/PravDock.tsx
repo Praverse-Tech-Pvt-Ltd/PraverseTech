@@ -1,9 +1,8 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
 import { usePrav } from './PravProvider';
-import { Bot } from 'lucide-react';
+import { PravIcon } from './PravIcon';
 
 export function PravDock() {
   const { setIsOpen } = usePrav();
@@ -13,21 +12,14 @@ export function PravDock() {
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        animate={{ rotate: 360 }}
-        transition={{
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration: 15,
-          ease: 'linear',
-        }}
       >
         <button
           onClick={() => setIsOpen(true)}
-          className="relative w-16 h-16 rounded-[2rem] shadow-2xl bg-primary/80 backdrop-blur-md text-primary-foreground flex items-center justify-center border border-primary/50"
+          className="relative w-16 h-16 rounded-full shadow-2xl bg-primary/80 backdrop-blur-md text-primary-foreground flex items-center justify-center border border-primary/50"
           aria-label="Open AI Assistant"
         >
-          <div className="absolute inset-0 rounded-[2rem] bg-purple-500/50 blur-lg animate-pulse" />
-          <Bot className="h-8 w-8 relative z-10" />
+          <div className="absolute inset-0 rounded-full bg-purple-500/50 blur-lg animate-pulse" />
+          <PravIcon className="h-8 w-8 relative z-10" />
         </button>
       </motion.div>
     </div>

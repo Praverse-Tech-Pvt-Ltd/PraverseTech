@@ -1,13 +1,13 @@
-
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePrav } from './PravProvider';
-import { Bot, X, CornerDownLeft, Sparkles } from 'lucide-react';
+import { X, CornerDownLeft, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState, useRef, useEffect } from 'react';
 import { pravChat } from '@/ai/flows/prav-chat';
+import { PravIcon } from './PravIcon';
 
 interface Message {
     role: 'user' | 'model';
@@ -85,7 +85,7 @@ export function PravPanel() {
             <header className="p-4 flex items-center justify-between border-b border-border/20 flex-shrink-0">
               <div className="flex items-center gap-3">
                  <div className="p-2 bg-primary/10 rounded-full">
-                   <Bot className="w-6 h-6 text-primary" />
+                   <PravIcon className="w-6 h-6 text-primary" />
                  </div>
                  <div>
                    <h3 className="font-bold text-lg">Prav</h3>
@@ -102,7 +102,7 @@ export function PravPanel() {
                 <div key={index} className={`flex gap-2.5 items-start ${msg.role === 'user' ? 'justify-end' : ''}`}>
                   {msg.role === 'model' && 
                     <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                      <Bot className="h-5 w-5 text-primary" />
+                      <PravIcon className="h-5 w-5 text-primary" />
                     </div>
                   }
                   <div className={`max-w-[85%] rounded-xl px-4 py-2.5 text-sm whitespace-pre-wrap ${
