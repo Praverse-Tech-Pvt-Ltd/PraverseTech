@@ -2,34 +2,48 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Cpu, FlaskConical, Microscope, Stethoscope } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, FlaskConical, Microscope, Stethoscope, Layers, Database, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 const useCases = [
   {
     icon: <Stethoscope className="w-10 h-10 text-primary" />,
     title: 'Healthcare & Diagnostics',
-    description: 'Automated detection of anomalies in medical imaging (fundus, ultrasound) and risk stratification from EHR data.',
+    description: 'Leveraging multimodal AI on imaging, EHR, and genomic data for early detection, risk stratification, and personalized treatment pathways.',
   },
   {
     icon: <Cpu className="w-10 h-10 text-primary" />,
-    title: 'Intelligent Assistants & NLP',
-    description: 'Powering conversational assistants like Netra Sakhi for triage, clinical Q&A, and patient-facing communication.',
+    title: 'Generative AI & Assistants',
+    description: 'Building custom LLMs and intelligent agents for complex Q&A, document summarization, and automating human-in-the-loop workflows.',
   },
   {
     icon: <FlaskConical className="w-10 h-10 text-primary" />,
-    title: 'Federated & Edge Learning',
-    description: 'Developing privacy-first models that train on decentralized data, crucial for on-device applications and sensitive health info.',
+    title: 'Federated & Privacy-First AI',
+    description: 'Training models on decentralized data without compromising user privacy, essential for healthcare and on-device intelligence.',
   },
   {
     icon: <Microscope className="w-10 h-10 text-primary" />,
-    title: 'Industrial & IoT Analytics',
-    description: 'Implementing anomaly detection and predictive maintenance models for smart factory and industrial intelligence use cases.',
+    title: 'Industrial & Scientific AI',
+    description: 'Implementing advanced anomaly detection, predictive maintenance, and digital twin simulations for smart manufacturing and research.',
   },
 ];
 
-const techStack = [
-    'Python', 'PyTorch', 'TensorFlow', 'scikit-learn', 'Rasa', 'spaCy', 'Transformers', 'Docker', 'Kubernetes', 'GitHub Actions', 'MLFlow'
+const principles = [
+  {
+    icon: <Layers className="w-8 h-8 text-primary" />,
+    title: 'Advanced Model Architectures',
+    description: 'Transformers, GNNs, Diffusion Models & more.',
+  },
+  {
+    icon: <Database className="w-8 h-8 text-primary" />,
+    title: 'Data-Centric AI',
+    description: 'Synthetic data, self-supervision, and robust feature engineering.',
+  },
+  {
+    icon: <Shield className="w-8 h-8 text-primary" />,
+    title: 'Scalable MLOps',
+    description: 'CI/CD, Kubernetes, and automated monitoring for production AI.',
+  },
 ];
 
 export default function MachineLearningPage() {
@@ -40,7 +54,7 @@ export default function MachineLearningPage() {
           <Badge>Machine Learning</Badge>
           <h1 className="mt-4 text-4xl md:text-5xl font-bold">Machine Learning at Praverse Tech</h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-            We don’t just train models — we build ML systems that survive the real world: noisy data, edge constraints, and regulatory oversight.
+            We don’t just train models — we build production-grade ML systems that solve real-world challenges with noisy data, edge constraints, and regulatory oversight.
           </p>
         </div>
       </section>
@@ -70,12 +84,20 @@ export default function MachineLearningPage() {
        <section className="py-20 md:py-28 bg-muted">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Our Technology Stack</h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">The tools and frameworks we use to build robust machine learning systems.</p>
+            <h2 className="text-3xl md:text-4xl font-bold">Our Core ML Principles</h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">We are technology agnostic. Our expertise is in first-principles thinking to select the best tools and architectures for the problem at hand.</p>
           </div>
-           <div className="flex flex-wrap justify-center gap-3">
-            {techStack.map(tech => (
-              <Badge key={tech} variant="secondary" className="text-base px-4 py-2">{tech}</Badge>
+           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {principles.map(tech => (
+              <Card key={tech.title} className="bg-background/50">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  {tech.icon}
+                  <CardTitle className="text-base">{tech.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-muted-foreground">{tech.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -86,11 +108,11 @@ export default function MachineLearningPage() {
           <Card className="bg-primary/5">
             <CardHeader className="text-center">
               <CheckCircle className="w-12 h-12 text-green-500 mx-auto" />
-              <CardTitle className="mt-4">Model Governance & Explainability</CardTitle>
+              <CardTitle className="mt-4">Trustworthy AI by Design</CardTitle>
             </CardHeader>
             <CardContent className="text-center max-w-3xl mx-auto">
               <p className="text-muted-foreground">
-                In regulated and high-stakes environments, black-box models are not an option. We prioritize model validation, fairness checks, and continuous monitoring. Our commitment to explainable AI (XAI) means we use techniques like Grad-CAM and SHAP-based analyses to make model decisions transparent and trustworthy to human experts, ensuring our solutions are not just powerful, but also accountable.
+                In high-stakes environments, black-box models are a liability. We build systems centered on model governance, fairness, and continuous monitoring. Our commitment to explainable AI (XAI) means we use techniques like Grad-CAM and SHAP to make model decisions transparent and trustworthy to human experts, ensuring our solutions are not just powerful, but also accountable.
               </p>
             </CardContent>
           </Card>
