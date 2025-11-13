@@ -97,7 +97,7 @@ export function Header() {
         <div className="flex flex-1 items-center justify-end space-x-2">
           <ThemeToggle />
           <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-            <Button asChild className="hidden sm:inline-flex" variant="secondary">
+            <Button asChild className="hidden sm:inline-flex">
               <button>Join Waitlist</button>
             </Button>
           </WaitlistDialog>

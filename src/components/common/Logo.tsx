@@ -19,7 +19,7 @@ export const Logo = ({ className }: { className?: string }) => (
       className="fill-foreground"
     >
       Praverse
-      <tspan className="fill-secondary">Tech</tspan>
+      <tspan className="fill-primary">Tech</tspan>
     </text>
   </svg>
 );
