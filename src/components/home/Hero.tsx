@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-const COLORS = ["#6D28D9", "#06B6D4", "#D946EF"];
+const COLORS = ["#06B6D4", "#6D28D9", "#D946EF"];
 
 export function Hero() {
   const color = useMotionValue(COLORS[0]);
-  const backgroundImage = useMotionTemplate`radial-gradient(35% 35% at 50% 50%, #0B132B 0%, transparent 100%), radial-gradient(100% 100% at 50% 50%, transparent 40%, ${color} 100%)`;
+  const backgroundImage = useMotionTemplate`radial-gradient(35% 35% at 50% 50%, hsl(var(--background)) 10%, transparent 100%), radial-gradient(100% 100% at 50% 50%, transparent 40%, ${color} 100%)`;
 
   useEffect(() => {
     animate(color, COLORS, {
@@ -25,7 +25,7 @@ export function Hero() {
     <section className="relative w-full py-32 md:py-48 lg:py-56 overflow-hidden">
        <motion.div
         style={{ backgroundImage }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 opacity-70"
       />
       <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
 

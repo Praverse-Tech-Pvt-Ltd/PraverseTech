@@ -12,13 +12,13 @@ export function HealthMateHero() {
   const [isBriefingOpen, setIsBriefingOpen] = useState(false);
 
   return (
-    <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-black text-white">
+    <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-background text-foreground">
       {/* Animated particle background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 opacity-50">
         {Array.from({ length: 100 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-white/10"
+            className="absolute rounded-full bg-primary/20"
             style={{
               x: Math.random() * 100 + 'vw',
               y: Math.random() * 100 + 'vh',
@@ -38,6 +38,8 @@ export function HealthMateHero() {
           />
         ))}
       </div>
+      <div className="absolute inset-0 z-10 bg-gradient-radial-hero" />
+
 
       {/* Silhouette and glow */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -48,7 +50,7 @@ export function HealthMateHero() {
           className="relative w-full h-full"
         >
           {/* Placeholder for silhouette - using a gradient for effect */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-full bg-gradient-to-t from-transparent via-primary/5 to-transparent"
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-full bg-gradient-to-t from-transparent via-primary/10 to-transparent"
              style={{
                 maskImage: 'url("/humanoid-silhouette.svg")',
                 maskSize: 'contain',
@@ -56,7 +58,6 @@ export function HealthMateHero() {
                 maskPosition: 'bottom center',
              }}
           />
-          <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent" />
         </motion.div>
       </div>
 
@@ -70,7 +71,7 @@ export function HealthMateHero() {
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
           HealthMate — A New Kind of Care.
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-white/80">
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           A humanoid-robot intelligence from Praverse Tech. Private beta. Launching soon.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -78,7 +79,7 @@ export function HealthMateHero() {
             <Button size="lg" variant="secondary">Join Waitlist</Button>
           </WaitlistDialog>
           <BriefingDialog open={isBriefingOpen} onOpenChange={setIsBriefingOpen}>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-black">
+            <Button size="lg" variant="outline" className="bg-transparent border-foreground/50 hover:bg-foreground/10">
               Request NDA Briefing
             </Button>
           </BriefingDialog>
