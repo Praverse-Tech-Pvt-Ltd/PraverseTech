@@ -38,8 +38,8 @@ export const DOMAINS = [
         color: 'text-orange-400',
     },
     {
-        title: 'Biochip Initiative',
-        description: 'Exploring next-gen diagnostics at the intersection of biology and silicon.',
+        title: 'Biochip 2027',
+        description: 'Exploring bio-inspired intelligence and smart sensing. Early-stage, confidential research.',
         href: null,
         icon: Atom,
         color: 'text-blue-400',
@@ -56,19 +56,19 @@ export const FEATURED_PROJECTS = [
 ];
 
 export const TIMELINE = [
-  { year: '2023', event: 'Netra Sakhi', description: 'AI-powered diabetic retinopathy screening tool launched.' },
-  { year: '2024', event: 'PCOS Detection', description: 'Developed a novel CV model for early PCOS detection from ultrasound images.' },
-  { year: '2025', event: 'HealthMate Patent & Intel Collaboration', description: 'Filed key patents for HealthMate and began our strategic collaboration with Intel.' },
-  { year: '2026', event: 'Biochip Prototype Research', description: 'Initiated R&D for a new class of diagnostic biochips.' },
+  { year: '2023', event: 'Netra Sakhi: Virtual Eye-Care Assistant', description: 'Launched an NLP + Twilio powered assistant for ophthalmic screening.' },
+  { year: '2024', event: 'PCOS Detection Pipeline', description: 'Developed a novel CV model using Ultrasound & EHR data for early detection.' },
+  { year: '2025', event: 'HealthMate & Intel Collaboration', description: 'Filed key patents for our AI Hospital Robot and began a strategic collaboration with Intel.' },
+  { year: '2026', event: 'Biochip Intelligence Research', description: 'Initiated R&D for a new class of diagnostic biochips with smart sensing capabilities.' },
   { year: '2027', event: 'Cognitive AI Ecosystem Launch', description: 'Projected launch of our integrated platform for industrial and healthcare AI.' },
 ];
 
 export const PUBLICATIONS = [
   { 
-    title: 'Deep Learning for Diabetic Macular Edema (DME) Detection', 
+    title: 'Deep Learning for Diabetic Macular Edema (DME) Detection from Fundus Images', 
     venue: 'IEEE Transactions on Medical Imaging', 
     year: '2023',
-    abstract: 'A novel convolutional neural network architecture for the automated detection and grading of DME from retinal fundus images, achieving 98% accuracy.',
+    abstract: 'A novel convolutional neural network architecture for the automated detection and grading of DME, achieving 98% accuracy.',
     badge: 'IEEE'
   },
   { 
@@ -80,12 +80,12 @@ export const PUBLICATIONS = [
   },
   { 
     title: 'Autonomous Driving Simulation using Neuroevolution of Augmenting Topologies (NEAT)', 
-    venue: 'International Journal of Robotics and Automation', 
+    venue: 'International Journal of Robotics & Automation', 
     year: '2024',
     abstract: 'We demonstrate the effectiveness of the NEAT algorithm in training agents for complex, multi-objective autonomous driving scenarios in simulation.',
     badge: 'Journal'
   },
-]
+];
 
 export const TECH_STACK = [
     'Generative AI × Regulatory Compliance',
