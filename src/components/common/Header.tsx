@@ -3,15 +3,21 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { ChevronDown, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { NAV_LINKS } from '@/lib/constants';
+import { NAV_LINKS, NavLink } from '@/lib/constants';
 import { Logo } from './Logo';
 import { ThemeToggle } from '../ui/theme-toggle';
 import { WaitlistDialog } from '../healthmate/WaitlistDialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   const pathname = usePathname();
@@ -26,23 +32,54 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = (
-    <>
-      {NAV_LINKS.map(link => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={cn(
-            'text-sm font-medium transition-colors hover:text-primary',
-            pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-          )}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </>
-  );
+  const renderNavLink = (link: NavLink, isMobile: boolean = false) => {
+    if (link.children) {
+        if (isMobile) {
+            return (
+                <div key={link.label}>
+                    <h4 className="font-semibold px-4">{link.label}</h4>
+                    <div className="flex flex-col space-y-2 mt-2">
+                    {link.children.map(child => (
+                        <Link key={child.href} href={child.href} className="text-muted-foreground hover:text-primary pl-8 pr-4 py-2">{child.label}</Link>
+                    ))}
+                    </div>
+                </div>
+            )
+        }
+      return (
+        <DropdownMenu key={link.label}>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground data-[state=open]:bg-accent/50 px-3 flex items-center gap-1">
+              {link.label}
+              <ChevronDown className="h-4 w-4 transition duration-200" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {link.children.map(child => (
+              <DropdownMenuItem key={child.label} asChild>
+                <Link href={child.href}>{child.label}</Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
 
+    return (
+      <Link
+        key={link.href}
+        href={link.href}
+        className={cn(
+          'text-sm font-medium transition-colors hover:text-primary',
+          pathname === link.href ? 'text-primary' : 'text-muted-foreground',
+           isMobile ? 'text-base px-4 py-2' : 'px-3'
+        )}
+      >
+        {link.label}
+      </Link>
+    );
+  };
+  
   return (
     <header
       className={cn(
@@ -54,8 +91,8 @@ export function Header() {
         <Link href="/" className="mr-6 flex items-center">
           <Logo />
         </Link>
-        <nav className="hidden items-center space-x-6 md:flex">
-          {navLinks}
+        <nav className="hidden items-center space-x-1 md:flex">
+          {NAV_LINKS.map(link => renderNavLink(link, false))}
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-2">
           <ThemeToggle />
@@ -77,7 +114,7 @@ export function Header() {
                   <Logo />
                 </Link>
                 <nav className="flex flex-col space-y-4">
-                  {navLinks}
+                  {NAV_LINKS.map(link => renderNavLink(link, true))}
                 </nav>
               </SheetContent>
             </Sheet>

@@ -42,3 +42,29 @@ export async function submitContactForm(data: z.infer<typeof contactFormSchema>)
 
     return { success: true, message: "Your message has been sent!" };
 }
+
+const innovateFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters."),
+  email: z.string().email("Invalid email address."),
+  projectName: z.string().min(2, "Project name must be at least 2 characters."),
+  pitch: z.string().min(10, "Pitch must be at least 10 characters.").max(140, "Pitch must be 140 characters or less."),
+  description: z.string().min(50, "Description must be at least 50 characters."),
+  stage: z.string({ required_error: "Please select a stage." }),
+  ipAck: z.literal<boolean>(true, {
+    errorMap: () => ({ message: "You must acknowledge the IP statement." }),
+  }),
+});
+
+export async function submitInnovationPitch(data: z.infer<typeof innovateFormSchema>) {
+    const validatedFields = innovateFormSchema.safeParse(data);
+
+    if (!validatedFields.success) {
+        return { success: false, message: "Invalid form data." };
+    }
+
+    // In a real application, you would save this to a dedicated Firestore collection
+    // for innovation pitches.
+    console.log("New innovation pitch submission:", validatedFields.data);
+
+    return { success: true, message: "Your pitch has been submitted! We'll be in touch." };
+}
