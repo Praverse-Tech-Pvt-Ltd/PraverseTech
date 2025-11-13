@@ -19,8 +19,8 @@ export default function DomainsPage() {
       <section className="py-20">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {DOMAINS.map((domain) => (
-              <Link key={domain.title} href={domain.href} className="group block h-full">
+            {DOMAINS.map((domain) => {
+              const card = (
                 <Card className="h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-2xl hover:-translate-y-2">
                   <CardHeader>
                     <div className="flex items-center gap-4">
@@ -31,14 +31,28 @@ export default function DomainsPage() {
                   <CardDescription className="px-6 pb-6 text-sm flex-grow">
                     {domain.description}
                   </CardDescription>
-                   <div className="px-6 pb-4">
-                      <div className="text-sm font-semibold text-primary flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        Explore Domain <ArrowRight className="w-4 h-4" />
-                      </div>
-                   </div>
+                  <div className="px-6 pb-4">
+                    <div className="text-sm font-semibold text-primary flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Explore Domain <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
                 </Card>
-              </Link>
-            ))}
+              );
+
+              if (domain.href) {
+                return (
+                  <Link key={domain.title} href={domain.href} className="group block h-full">
+                    {card}
+                  </Link>
+                );
+              }
+
+              return (
+                <div key={domain.title} className="group block h-full cursor-default">
+                  {card}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
