@@ -2,6 +2,7 @@
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/#domains', label: 'Domains' },
+  { href: '/machine-learning', label: 'Machine Learning' },
   { href: '/healthmate', label: 'HealthMate' },
   { href: '/about', label: 'About Us' },
   { href: '/blog', label: 'Insights' },

@@ -9,6 +9,7 @@ import { InnovationTimeline } from '@/components/home/InnovationTimeline';
 import { ResearchPublications } from '@/components/home/ResearchPublications';
 import { Collaborations } from '@/components/home/Collaborations';
 import { AILabsShowcase } from '@/components/home/AILabsShowcase';
+import { MachineLearningShowcase } from '@/components/home/MachineLearningShowcase';
 
 export default function Home() {
   const posts = getBlogPosts().slice(0, 3);
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Vision />
         <Domains />
+        <MachineLearningShowcase />
         <AILabsShowcase />
         <InnovationTimeline />
         <ResearchPublications />
