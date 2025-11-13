@@ -7,23 +7,6 @@ import { Award, Target, Users, Bot } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const heroImage = PlaceHolderImages.find(p => p.id === 'about-mission');
-const leadership1 = PlaceHolderImages.find(p => p.id === 'leadership-1');
-const leadership2 = PlaceHolderImages.find(p => p.id === 'leadership-2');
-
-const leadership = [
-  {
-    name: 'Anand Sharma',
-    title: 'Founder & CEO',
-    bio: 'With over 15 years in enterprise software, Anand is passionate about applying AI to solve real-world problems in regulated industries. His vision is to make complex technology accessible and impactful.',
-    avatar: leadership1
-  },
-  {
-    name: 'Priya Verma',
-    title: 'CTO & Head of AI',
-    bio: 'Priya leads our technology and research efforts. A PhD in computer science with a focus on NLP, she architects our domain-specific models and ensures our AI is explainable and robust.',
-    avatar: leadership2
-  },
-];
 
 const values = [
     { icon: <Target className="h-8 w-8 text-primary"/>, title: 'Customer Obsession', description: 'We succeed when our customers succeed. We deeply embed ourselves in their domain to solve their most critical problems.'},
@@ -81,32 +64,6 @@ export default function AboutPage() {
                     </div>
                 ))}
             </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold">Meet the Leadership</h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">The minds behind our mission.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {leadership.map(leader => (
-              <Card key={leader.name}>
-                <CardHeader className="items-center text-center">
-                  <Avatar className="w-24 h-24 mb-4">
-                    {leader.avatar && <AvatarImage src={leader.avatar.imageUrl} alt={leader.name} data-ai-hint={leader.avatar.imageHint} />}
-                    <AvatarFallback>{leader.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <CardTitle>{leader.name}</CardTitle>
-                  <CardDescription>{leader.title}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-center text-muted-foreground">{leader.bio}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
