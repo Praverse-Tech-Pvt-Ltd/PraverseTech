@@ -36,9 +36,9 @@ export async function submitContactForm(data: z.infer<typeof contactFormSchema>)
         return { success: false, message: "Invalid form data." };
     }
 
-    // Here you would typically save the data to Firestore and send an email
-    // via a Cloud Function.
-    console.log("New contact form submission:", validatedFields.data);
+    // In a real app, you would use an email service like Resend or Nodemailer
+    // to send this data to your desired email address.
+    console.log("New contact form submission. Send to praversetech@gmail.com:", validatedFields.data);
 
     return { success: true, message: "Your message has been sent!" };
 }
@@ -62,9 +62,9 @@ export async function submitInnovationPitch(data: z.infer<typeof innovateFormSch
         return { success: false, message: "Invalid form data." };
     }
 
-    // In a real application, you would save this to a dedicated Firestore collection
-    // for innovation pitches.
-    console.log("New innovation pitch submission:", validatedFields.data);
+    // In a real app, you would use an email service like Resend or Nodemailer
+    // to send this data to your desired email address.
+    console.log("New innovation pitch submission. Send to praversetech@gmail.com:", validatedFields.data);
 
     return { success: true, message: "Your pitch has been submitted! We'll be in touch." };
 }
