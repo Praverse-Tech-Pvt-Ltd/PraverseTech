@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePrav } from './PravProvider';
 import { Bot, X, CornerDownLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 
@@ -33,61 +32,71 @@ export function PravPanel() {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          className="fixed bottom-24 right-6 z-50"
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.95 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="fixed bottom-24 right-6 z-50 w-[380px] h-[600px] overflow-hidden rounded-2xl shadow-2xl bg-background/50 backdrop-blur-xl border border-border/20"
         >
-          <Card className="w-[350px] shadow-2xl">
-            <CardHeader className="flex flex-row items-center justify-between">
+          {/* Glowing border effect */}
+          <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 opacity-50 blur-lg" />
+          
+          <div className="relative z-10 flex flex-col h-full bg-background/70">
+            <header className="p-4 flex items-center justify-between border-b border-border/20 flex-shrink-0">
               <div className="flex items-center gap-3">
                  <div className="p-2 bg-primary/10 rounded-full">
                    <Bot className="w-6 h-6 text-primary" />
                  </div>
                  <div>
-                   <CardTitle>Prav</CardTitle>
-                   <CardDescription>AI Companion</CardDescription>
+                   <h3 className="font-bold text-lg">Prav</h3>
+                   <p className="text-sm text-muted-foreground">AI Companion</p>
                  </div>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setIsOpen(false)}>
                 <X className="h-4 w-4" />
               </Button>
-            </CardHeader>
-            <CardContent className="h-[400px] overflow-y-auto space-y-4 p-4">
+            </header>
+
+            <div className="flex-grow overflow-y-auto space-y-4 p-4">
               {history.map((msg, index) => (
-                <div key={index} className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : ''}`}>
-                  {msg.role === 'model' && <Bot className="h-5 w-5 text-primary flex-shrink-0" />}
-                  <div className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
+                <div key={index} className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : ''}`}>
+                  {msg.role === 'model' && 
+                    <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                      <Bot className="h-5 w-5 text-primary" />
+                    </div>
+                  }
+                  <div className={`max-w-[85%] rounded-xl px-4 py-2.5 text-sm ${
                     msg.role === 'user' 
-                      ? 'bg-primary text-primary-foreground' 
-                      : 'bg-muted'
+                      ? 'bg-primary text-primary-foreground rounded-br-none' 
+                      : 'bg-muted rounded-bl-none'
                   }`}>
                     {msg.content}
                   </div>
                 </div>
               ))}
-            </CardContent>
-            <CardFooter className="p-4 border-t">
+            </div>
+
+            <footer className="p-4 border-t border-border/20 flex-shrink-0">
               <div className="relative w-full">
                 <Input 
                   placeholder="Ask about our labs..." 
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  className="pr-10"
+                  className="pr-10 bg-muted border-0 focus-visible:ring-primary"
                 />
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full"
                   onClick={handleSend}
                   disabled={!message.trim()}
                 >
                   <CornerDownLeft className="h-4 w-4" />
                 </Button>
               </div>
-            </CardFooter>
-          </Card>
+            </footer>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
