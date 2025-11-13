@@ -17,7 +17,7 @@ export function Footer() {
     { href: '/about', label: 'About' },
     { href: '/domains', label: 'Domains' },
     { href: '/careers', label: 'Careers' },
-    { href: '/contact', label: 'Press' },
+    { href: '/press', label: 'Press' },
     { href: '/contact', label: 'Contact' },
   ]
 
