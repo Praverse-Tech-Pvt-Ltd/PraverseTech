@@ -5,7 +5,6 @@ import { Vision } from '@/components/home/Vision';
 import { Domains } from '@/components/home/Domains';
 import { Cta } from '@/components/home/Cta';
 import { getBlogPosts } from '@/lib/blog';
-import { PravChatbot } from '@/components/home/PravChatbot';
 import { InnovationTimeline } from '@/components/home/InnovationTimeline';
 import { ResearchPublications } from '@/components/home/ResearchPublications';
 import { Collaborations } from '@/components/home/Collaborations';
@@ -25,7 +24,6 @@ export default function Home() {
         <ResearchPublications />
         <Collaborations />
         <Cta />
-        <PravChatbot />
       </main>
     </div>
   );

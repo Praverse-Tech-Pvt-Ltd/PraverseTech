@@ -6,6 +6,7 @@ import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { Toaster } from "@/components/ui/toaster"
 import { FirebaseClientProvider } from '@/firebase';
+import { PravProvider } from '@/components/assistant/PravProvider';
 
 export const metadata: Metadata = {
   title: 'Praverse Tech - Domain-Smart AI for Pharma & Healthcare',
@@ -34,12 +35,14 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FirebaseClientProvider>
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <Toaster />
+            <PravProvider>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+              <Toaster />
+            </PravProvider>
           </FirebaseClientProvider>
         </ThemeProvider>
       </body>
