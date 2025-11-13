@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BlogIdeasGenerator } from '@/components/blog/BlogIdeasGenerator';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export const metadata = {
   title: 'Blog | Praverse Tech',
@@ -15,6 +16,10 @@ export const metadata = {
 
 export default function BlogPage() {
   const posts = getBlogPosts();
+  const founderPost = posts.find(p => p.slug === 'future-of-ai-in-healthcare');
+  const otherPosts = posts.filter(p => p.slug !== 'future-of-ai-in-healthcare');
+  const founderAvatar = PlaceHolderImages.find(p => p.id === 'avatar-2');
+
 
   return (
     <div>
@@ -27,11 +32,47 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      {founderPost && (
+        <section className="py-20 md:pt-0 md:pb-28">
+            <div className="container">
+                <h2 className="text-2xl font-bold mb-8 text-center">Founder's Corner</h2>
+                <Link href={`/blog/${founderPost.slug}`} className="block group">
+                    <Card className="overflow-hidden transition-all group-hover:shadow-2xl md:flex">
+                        <div className="md:w-1/2 relative h-64 md:h-auto">
+                           <Image 
+                                src={PlaceHolderImages.find(p => p.id === founderPost.metadata.image)?.imageUrl || ''}
+                                alt={founderPost.metadata.title}
+                                fill
+                                className="object-cover"
+                           />
+                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"/>
+                        </div>
+                        <div className="md:w-1/2 p-8 flex flex-col justify-center">
+                            <Badge variant="secondary" className="w-fit mb-4">Founder Insight</Badge>
+                            <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{founderPost.metadata.title}</h3>
+                            <p className="mt-4 text-muted-foreground">{founderPost.metadata.excerpt}</p>
+                            <div className="mt-6 flex items-center gap-4">
+                                <Avatar>
+                                    <AvatarImage src={founderAvatar?.imageUrl} />
+                                    <AvatarFallback>PS</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <p className="font-semibold">{founderPost.metadata.author}</p>
+                                    <p className="text-sm text-muted-foreground">Founder, Praverse Tech</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </Link>
+            </div>
+        </section>
+      )}
+
+      <section className="pb-20 md:pb-28">
         <div className="container">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-8">
-              {posts.map(post => {
+              {otherPosts.map(post => {
                 const image = PlaceHolderImages.find(p => p.id === post.metadata.image);
                 return (
                   <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">

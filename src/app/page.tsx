@@ -10,9 +10,12 @@ import { ResearchPublications } from '@/components/home/ResearchPublications';
 import { Collaborations } from '@/components/home/Collaborations';
 import { AILabsShowcase } from '@/components/home/AILabsShowcase';
 import { MachineLearningShowcase } from '@/components/home/MachineLearningShowcase';
+import { Insights } from '@/components/home/Insights';
 
 export default function Home() {
-  const posts = getBlogPosts().slice(0, 3);
+  const posts = getBlogPosts();
+  const founderPost = posts.find(p => p.slug === 'future-of-ai-in-healthcare');
+  const otherPosts = posts.filter(p => p.slug !== 'future-of-ai-in-healthcare').slice(0, 2);
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -22,6 +25,7 @@ export default function Home() {
         <Domains />
         <MachineLearningShowcase />
         <AILabsShowcase />
+        <Insights founderPost={founderPost} otherPosts={otherPosts} />
         <InnovationTimeline />
         <ResearchPublications />
         <Collaborations />

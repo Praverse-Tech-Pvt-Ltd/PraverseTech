@@ -9,6 +9,8 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Calendar, Clock } from 'lucide-react';
 import type { Metadata } from 'next';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 type Props = {
   params: { slug: string };
@@ -20,9 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) {
     return {};
   }
+  
+  const ogImageUrl = `https://www.praverse.ai/api/og?title=${encodeURIComponent(post.metadata.title)}`;
 
   return {
-    title: `${post.metadata.title} | Praverse Tech Blog`,
+    title: `${post.metadata.title} | Praverse Tech`,
     description: post.metadata.excerpt,
     openGraph: {
         title: post.metadata.title,
@@ -30,11 +34,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         type: 'article',
         publishedTime: post.metadata.date,
         authors: [post.metadata.author],
+        url: `/blog/${post.slug}`,
         images: [
             {
-                url: PlaceHolderImages.find(p => p.id === post.metadata.image)?.imageUrl || '',
+                url: ogImageUrl,
+                width: 1200,
+                height: 630,
+                alt: post.metadata.title,
             }
         ]
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: post.metadata.title,
+        description: post.metadata.excerpt,
+        images: [ogImageUrl],
     }
   };
 }
@@ -54,6 +68,8 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const isFounderPost = post.metadata.tags.includes('Founder Insights');
+
   const { content, frontmatter } = await compileMDX<{ title: string; date: string; author: string }>({
     source: post.content,
     components: MdxComponents,
@@ -61,25 +77,19 @@ export default async function BlogPostPage({ params }: Props) {
   });
 
   const image = PlaceHolderImages.find(p => p.id === post.metadata.image);
-  const authorAvatar = PlaceHolderImages.find(p => p.id === 'avatar-1');
+  const authorAvatar = PlaceHolderImages.find(p => p.id === 'avatar-2');
 
   return (
     <article>
-      <header className="relative py-24 md:py-40">
-        {image && (
-          <Image
-            src={image.imageUrl}
-            alt={post.metadata.title}
-            fill
-            className="object-cover opacity-20"
-            data-ai-hint={image.imageHint}
-            priority
-          />
-        )}
+      <header className="relative py-24 md:py-40 bg-muted/30">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-cyan-500/10" />
+         <div className="absolute inset-0 border-b border-white/5" />
+
         <div className="container relative z-10 text-center">
+            {isFounderPost && <Badge variant="secondary" className="mb-4">Founder Insight</Badge>}
           <div className="flex justify-center gap-2 mb-4">
-            {post.metadata.tags && post.metadata.tags.map(tag => (
-              <Badge key={tag} variant="secondary" className="text-sm">{tag}</Badge>
+            {post.metadata.tags && post.metadata.tags.filter(t => t !== 'Founder Insights').map(tag => (
+              <Badge key={tag} variant="outline" className="text-sm bg-background/30 backdrop-blur-sm">{tag}</Badge>
             ))}
           </div>
           <h1 className="text-4xl md:text-5xl font-bold max-w-4xl mx-auto">{post.metadata.title}</h1>
@@ -89,7 +99,10 @@ export default async function BlogPostPage({ params }: Props) {
                 {authorAvatar && <AvatarImage src={authorAvatar.imageUrl} alt={post.metadata.author} />}
                 <AvatarFallback>{post.metadata.author.charAt(0)}</AvatarFallback>
               </Avatar>
-              <span>{post.metadata.author}</span>
+              <div>
+                <p className="font-semibold">{post.metadata.author}</p>
+                {isFounderPost && <p className="text-xs text-muted-foreground">Founder, Praverse Tech Pvt Ltd</p>}
+              </div>
             </div>
             <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4"/>{new Date(post.metadata.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             <span className="flex items-center gap-1.5"><Clock className="h-4 w-4"/>{post.readingTime}</span>
@@ -99,6 +112,22 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="container pb-20 prose dark:prose-invert max-w-3xl mx-auto">
         {content}
       </div>
+
+       {isFounderPost && (
+        <section className="py-20 bg-muted/50">
+            <div className="container text-center">
+                <h2 className="text-2xl font-bold">Want to collaborate on the future of AI in healthcare?</h2>
+                <div className="mt-6 flex justify-center gap-4">
+                    <Button asChild>
+                        <Link href="/contact">Talk to Us</Link>
+                    </Button>
+                    <Button asChild variant="outline">
+                        <Link href="/pharma-ai">Explore Our Healthcare AI Work</Link>
+                    </Button>
+                </div>
+            </div>
+        </section>
+       )}
     </article>
   );
 }
