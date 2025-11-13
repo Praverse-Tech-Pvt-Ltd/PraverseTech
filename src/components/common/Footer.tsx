@@ -15,7 +15,7 @@ export function Footer() {
 
   const footerLinks = [
     { href: '/about', label: 'About' },
-    { href: '/pharma-ai', label: 'Domains' },
+    { href: '/domains', label: 'Domains' },
     { href: '/careers', label: 'Careers' },
     { href: '/contact', label: 'Press' },
     { href: '/contact', label: 'Contact' },
