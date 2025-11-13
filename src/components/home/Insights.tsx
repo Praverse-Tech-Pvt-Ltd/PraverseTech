@@ -7,7 +7,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Badge } from "../ui/badge";
-import { motion } from "framer-motion";
+import { AnimatedItem, AnimatedSection } from "@/components/common/AnimatedSection";
 
 interface InsightsProps {
     founderPost?: Post;
@@ -20,37 +20,37 @@ export function Insights({ founderPost, otherPosts }: InsightsProps) {
     }
 
     return (
-        <section className="py-20 md:py-28 bg-muted">
+        <AnimatedSection className="py-20 md:py-28 bg-muted" staggerChildren={0.15}>
             <div className="container">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Insights & Research</h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
+                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Insights & Research</h2>
+                    <p className="mt-4 text-base text-muted-foreground md:text-lg">
                         From our blog, the latest in AI, robotics, and industry transformation.
                     </p>
-                </motion.div>
+                </AnimatedItem>
 
                 <div className="grid lg:grid-cols-2 gap-8">
                     {founderPost && (
+                        <AnimatedItem direction="up" className="lg:col-span-2">
                          <Link href={`/blog/${founderPost.slug}`} className="block group lg:col-span-2">
-                            <Card className="flex flex-col md:flex-row h-full overflow-hidden transition-all group-hover:shadow-2xl">
-                                {PlaceHolderImages.find(p => p.id === founderPost.metadata.image) && (
-                                    <div className="md:w-1/2 relative h-64 md:h-auto">
+                            <Card className="flex h-full flex-col overflow-hidden border-border/60 bg-background/90 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl md:flex-row">
+                                {(() => {
+                                    const imageMeta = PlaceHolderImages.find(p => p.id === founderPost.metadata.image);
+                                    if (!imageMeta) return null;
+                                    return (
+                                    <div className="relative h-64 w-full md:h-auto md:w-1/2">
                                         <Image
-                                            src={PlaceHolderImages.find(p => p.id === founderPost.metadata.image)!.imageUrl}
+                                            src={imageMeta.imageUrl}
                                             alt={founderPost.metadata.title}
                                             fill
+                                            sizes="(min-width: 1024px) 50vw, 100vw"
                                             className="object-cover"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20" />
                                     </div>
-                                )}
-                                <div className="md:w-1/2 p-6 flex flex-col">
+                                    );
+                                })()}
+                                <div className="flex flex-col p-6 md:w-1/2">
                                     <Badge variant="secondary" className="w-fit mb-2">Founder Insight</Badge>
                                     <CardTitle className="text-2xl group-hover:text-primary transition-colors">{founderPost.metadata.title}</CardTitle>
                                     <CardDescription className="mt-2 flex-grow">{founderPost.metadata.excerpt}</CardDescription>
@@ -66,20 +66,23 @@ export function Insights({ founderPost, otherPosts }: InsightsProps) {
                                 </div>
                             </Card>
                         </Link>
+                        </AnimatedItem>
                     )}
                     
-                    <div className={`lg:col-span-2 grid ${otherPosts.length === 1 ? 'lg:grid-cols-1' : 'lg:grid-cols-2'} gap-8`}>
+                    <div className={`grid gap-8 lg:col-span-2 ${otherPosts.length === 1 ? 'lg:grid-cols-1' : 'lg:grid-cols-2'}`}>
                         {otherPosts.map(post => {
                             const image = PlaceHolderImages.find(p => p.id === post.metadata.image);
                             return (
+                                <AnimatedItem key={post.slug}>
                                 <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-                                    <Card className="flex flex-col h-full overflow-hidden transition-all group-hover:shadow-lg">
+                                    <Card className="flex h-full flex-col overflow-hidden border-border/60 bg-background transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl">
                                         {image && (
-                                            <div className="h-48 relative">
+                                            <div className="relative h-48">
                                             <Image
                                                 src={image.imageUrl}
                                                 alt={post.metadata.title}
                                                 fill
+                                                sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
                                                 className="object-cover"
                                                 data-ai-hint={image.imageHint}
                                             />
@@ -103,11 +106,12 @@ export function Insights({ founderPost, otherPosts }: InsightsProps) {
                                         </CardFooter>
                                     </Card>
                                 </Link>
+                                </AnimatedItem>
                             );
                         })}
                     </div>
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

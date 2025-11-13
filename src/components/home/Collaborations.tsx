@@ -1,6 +1,6 @@
 
 'use client';
-import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Lightbulb, Handshake, BrainCircuit, ArrowRight } from 'lucide-react';
@@ -32,33 +32,24 @@ const collaborationItems = [
 
 export function Collaborations() {
     return (
-        <section className="py-20 md:py-28 bg-muted">
+        <AnimatedSection className="py-20 md:py-28 bg-muted" staggerChildren={0.14}>
             <div className="container">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Pitch Your Idea. Build With Us. Change the Future.</h2>
-                    <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
+                <AnimatedItem className="mx-auto mb-16 max-w-3xl text-center">
+                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Pitch Your Idea. Build With Us. Change the Future.</h2>
+                    <p className="mt-4 text-base text-muted-foreground md:text-lg">
                         We collaborate with innovators, students, researchers, and early-stage founders to turn breakthrough concepts into real-world products. If you have an idea in AI, healthcare, robotics, software, or emerging tech — let’s make it happen together.
                     </p>
-                </motion.div>
-                <div className="grid md:grid-cols-3 gap-8">
+                </AnimatedItem>
+                <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                     {collaborationItems.map((item, index) => (
-                        <motion.div
+                        <AnimatedItem
                             key={item.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.5 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            delay={index * 0.1}
                         >
-                            <Card className="text-center h-full flex flex-col glassmorphism">
+                            <Card className="glassmorphism flex h-full flex-col border-border/60 text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
                                 <CardHeader>
-                                    <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit mb-4">
-                                        <item.icon className="w-10 h-10 text-primary" />
+                                    <div className="mx-auto mb-4 w-fit rounded-full bg-primary/10 p-4">
+                                        <item.icon className="h-10 w-10 text-primary" />
                                     </div>
                                     <CardTitle>{item.title}</CardTitle>
                                 </CardHeader>
@@ -71,17 +62,11 @@ export function Collaborations() {
                                     </Button>
                                 </div>
                             </Card>
-                        </motion.div>
+                        </AnimatedItem>
                     ))}
                 </div>
-                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="mt-16"
-                 >
-                    <div className="relative p-8 rounded-lg border border-primary/20 bg-primary/5 text-center overflow-hidden">
+                 <AnimatedItem className="mt-16">
+                    <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center">
                         <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 opacity-20 blur-lg animate-pulse" />
                         <div className="relative z-10">
                             <h3 className="text-2xl font-bold">Have a game-changing idea? Let’s bring it to life.</h3>
@@ -90,8 +75,8 @@ export function Collaborations() {
                             </Button>
                         </div>
                     </div>
-                </motion.div>
+                </AnimatedItem>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

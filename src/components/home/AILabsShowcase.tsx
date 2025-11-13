@@ -1,7 +1,6 @@
 
 'use client';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import { Card, CardContent } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Eye, Brain, Cpu, Orbit } from 'lucide-react';
@@ -18,23 +17,17 @@ const tabs = [
 export function AILabsShowcase() {
     
     return (
-        <section className="py-20 md:py-28 bg-muted">
+        <AnimatedSection className="py-20 md:py-28 bg-muted" staggerChildren={0.18} amount={0.3}>
             <div className="container">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">AI Labs & Experiments</h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
+                    <h2 className="text-3xl font-bold tracking-tight md:text-4xl">AI Labs & Experiments</h2>
+                    <p className="mt-4 text-base text-muted-foreground md:text-lg">
                         A peek into our research and development powerhouses.
                     </p>
-                </motion.div>
+                </AnimatedItem>
 
                 <Tabs defaultValue="vision" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto">
+                    <TabsList className="grid h-auto w-full grid-cols-2 md:grid-cols-4">
                         {tabs.map(tab => (
                             <TabsTrigger key={tab.id} value={tab.id} className="py-3 gap-2">
                                 <tab.icon className="w-5 h-5"/>
@@ -46,21 +39,32 @@ export function AILabsShowcase() {
                         const image = PlaceHolderImages.find(p => p.id === tab.imageId);
                         return (
                             <TabsContent key={tab.id} value={tab.id} className="mt-6">
-                                <Card>
+                                <AnimatedItem direction="up">
+                                <Card className="overflow-hidden border-border/60">
                                     <CardContent className="p-6 text-center">
                                         <h3 className="text-lg font-semibold">{tab.title}</h3>
-                                        <p className="text-muted-foreground text-sm mt-1 mb-4">{tab.description}</p>
-                                        <div className="relative aspect-video max-w-xl mx-auto rounded-lg overflow-hidden border">
-                                            {image && <Image src={image.imageUrl} alt={tab.title} layout="fill" objectFit="cover" data-ai-hint={image.imageHint} />}
-                                            <div className="absolute inset-0 bg-black/10" />
+                                        <p className="mt-1 mb-4 text-sm text-muted-foreground md:text-base">{tab.description}</p>
+                                        <div className="relative mx-auto aspect-video w-full max-w-2xl overflow-hidden rounded-xl border border-border/70 bg-background/60">
+                                            {image && (
+                                              <Image
+                                                src={image.imageUrl}
+                                                alt={tab.title}
+                                                fill
+                                                sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                                className="object-cover"
+                                                data-ai-hint={image.imageHint}
+                                              />
+                                            )}
+                                            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/20 mix-blend-overlay" />
                                         </div>
                                     </CardContent>
                                 </Card>
+                                </AnimatedItem>
                             </TabsContent>
                         )
                     })}
                 </Tabs>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

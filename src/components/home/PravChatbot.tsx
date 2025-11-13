@@ -30,7 +30,7 @@ export function PravChatbot() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 right-6 z-[9999]">
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <Button
             size="icon"
@@ -48,7 +48,7 @@ export function PravChatbot() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-24 right-6 z-50"
+            className="fixed bottom-24 right-6 z-[9999]"
           >
             <Card className="w-[350px] shadow-2xl">
               <CardHeader className="flex flex-row items-center justify-between">

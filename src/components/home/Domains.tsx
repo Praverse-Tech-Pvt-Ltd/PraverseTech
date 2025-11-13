@@ -1,68 +1,43 @@
 
 'use client'
-import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import Link from 'next/link';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { DOMAINS } from '@/lib/data';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-};
-
 export function Domains() {
   return (
-    <section id="domains" className="py-20 md:py-28 bg-background">
+    <AnimatedSection
+      id="domains"
+      className="py-20 md:py-28 bg-background"
+      staggerChildren={0.12}
+      amount={0.35}
+    >
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
+        <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
             Our Core Innovation Domains
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+          <p className="mt-4 text-base text-muted-foreground md:text-lg">
             We are a multi-disciplinary team of experts pushing the boundaries of what's possible in intelligent systems.
           </p>
-        </motion.div>
+        </AnimatedItem>
 
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-        >
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {DOMAINS.map((domain) => (
-            <motion.div key={domain.title} variants={itemVariants} className="[perspective:1000px]">
-              <Card className="h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:[transform:rotateY(5deg)_rotateX(5deg)]">
+            <AnimatedItem key={domain.title} className="[perspective:1200px]">
+              <Card className="group flex h-full flex-col overflow-hidden border-border/60 bg-background/80 transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl hover:[transform:rotateY(6deg)_rotateX(2deg)]">
                   <CardHeader>
                     <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-full">
-                        <domain.icon className={cn("w-8 h-8 transition-colors", domain.color)} />
+                      <div className="rounded-full bg-primary/10 p-3">
+                        <domain.icon className={cn("h-8 w-8 transition-colors duration-300 group-hover:text-primary", domain.color)} />
                       </div>
-                      <CardTitle className="text-xl">{domain.title}</CardTitle>
+                      <CardTitle className="text-lg md:text-xl">{domain.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardDescription className="px-6 pb-6 text-sm flex-grow">
+                  <CardDescription className="flex-grow px-6 pb-6 text-sm text-muted-foreground md:text-base">
                     {domain.description}
                   </CardDescription>
                    {domain.href && <div className="px-6 pb-4 mt-auto">
@@ -71,10 +46,10 @@ export function Domains() {
                       </Link>
                    </div>}
                 </Card>
-            </motion.div>
+            </AnimatedItem>
           ))}
-        </motion.div>
+        </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

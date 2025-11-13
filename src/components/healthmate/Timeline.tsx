@@ -1,6 +1,6 @@
 
 'use client';
-import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import { useMemoFirebase, useCollection, useFirestore } from '@/firebase';
 import { collection } from 'firebase/firestore';
 import { Skeleton } from '../ui/skeleton';
@@ -23,49 +23,49 @@ export function Timeline() {
 
   if (isLoading) {
     return (
-        <section className="py-20 md:py-28">
+        <AnimatedSection className="py-20 md:py-28">
             <div className="container max-w-3xl mx-auto">
-                 <div className="text-center mb-16">
+                 <AnimatedItem className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold">Our Roadmap</h2>
                     <p className="mt-4 text-muted-foreground text-lg">The journey to a new kind of care.</p>
-                </div>
+                </AnimatedItem>
                 <div className="space-y-8">
                     <Skeleton className="h-20 w-full" />
                     <Skeleton className="h-20 w-full" />
                     <Skeleton className="h-20 w-full" />
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
     )
   }
   
   return (
-    <section className="py-20 md:py-28">
+    <AnimatedSection className="py-20 md:py-28" staggerChildren={0.08}>
       <div className="container max-w-3xl mx-auto">
-        <div className="text-center mb-16">
+        <AnimatedItem className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold">Our Roadmap</h2>
           <p className="mt-4 text-muted-foreground text-lg">The journey to a new kind of care.</p>
-        </div>
-        <div className="relative">
-          <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-border" aria-hidden="true"></div>
+        </AnimatedItem>
+        <div className="relative pl-6 md:pl-0">
+          <div className="absolute left-3 top-0 bottom-0 w-px bg-border md:left-1/2" aria-hidden="true"></div>
           {sortedTimeline.map((item, index) => (
-            <motion.div
+            <AnimatedItem
               key={item.date}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5 }}
-              className={`relative mb-12 flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+              direction="up"
+              delay={index * 0.05}
+              className="relative mb-12"
             >
-              <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                <p className="font-bold text-primary text-lg">{item.date}</p>
-                <p className="text-muted-foreground">{item.description}</p>
+              <div className={`rounded-2xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur md:w-[calc(50%-2.5rem)] ${index % 2 === 0 ? 'md:mr-auto md:text-right' : 'md:ml-auto md:text-left'} md:pr-8 md:pl-8`}>
+                <p className="text-lg font-bold text-primary">{item.date}</p>
+                <p className="mt-1 text-muted-foreground">{item.description}</p>
               </div>
-              <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary ring-4 ring-background" aria-hidden="true"></div>
-            </motion.div>
+              <div className="absolute left-3 top-8 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2 md:-translate-x-1/2">
+                <div className="h-4 w-4 rounded-full bg-primary shadow-[0_0_0_10px_rgba(6,182,212,0.2)]" aria-hidden="true" />
+              </div>
+            </AnimatedItem>
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

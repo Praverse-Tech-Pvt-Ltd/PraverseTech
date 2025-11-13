@@ -4,27 +4,34 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 export default function DomainsPage() {
   return (
     <div>
-      <section className="pt-24 pb-12 md:pt-32 md:pb-20 bg-muted">
+      <AnimatedSection className="bg-muted pt-24 pb-12 md:pt-32 md:pb-20" amount={0.5}>
         <div className="container text-center">
-          <h1 className="text-4xl md:text-5xl font-bold">Innovation Domains</h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <AnimatedItem>
+          <h1 className="text-4xl font-bold md:text-5xl">Innovation Domains</h1>
+          </AnimatedItem>
+          <AnimatedItem delay={0.1}>
+          <p className="mt-4 mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
             We are a multi-disciplinary team of experts pushing the boundaries of what's possible in intelligent systems.
           </p>
+          </AnimatedItem>
         </div>
-      </section>
-      <section className="py-20">
+      </AnimatedSection>
+      <AnimatedSection className="py-20" staggerChildren={0.15}>
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {DOMAINS.map((domain) => {
               const card = (
-                <Card className="h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-2xl hover:-translate-y-2">
+                <Card className="group flex h-full flex-col overflow-hidden border-border/60 bg-background transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-2xl">
                   <CardHeader>
                     <div className="flex items-center gap-4">
-                      <domain.icon className={cn("w-10 h-10 transition-colors", domain.color, "group-hover:text-primary")} />
+                      <div className="rounded-full bg-primary/10 p-3">
+                        <domain.icon className={cn("h-8 w-8 transition-colors duration-300 group-hover:text-primary", domain.color)} />
+                      </div>
                       <CardTitle className="text-xl">{domain.title}</CardTitle>
                     </div>
                   </CardHeader>
@@ -41,21 +48,25 @@ export default function DomainsPage() {
 
               if (domain.href) {
                 return (
-                  <Link key={domain.title} href={domain.href} className="group block h-full">
+                  <AnimatedItem key={domain.title}>
+                  <Link href={domain.href} className="block h-full">
                     {card}
                   </Link>
+                  </AnimatedItem>
                 );
               }
 
               return (
-                <div key={domain.title} className="group block h-full cursor-default">
+                <AnimatedItem key={domain.title}>
+                <div className="group block h-full cursor-default">
                   {card}
                 </div>
+                </AnimatedItem>
               );
             })}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </div>
   );
 }

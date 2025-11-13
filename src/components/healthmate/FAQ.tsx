@@ -10,6 +10,7 @@ import {
 import { useMemoFirebase, useCollection, useFirestore } from '@/firebase';
 import { collection } from 'firebase/firestore';
 import { Skeleton } from "../ui/skeleton";
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 interface FAQItem {
   question: string;
@@ -27,28 +28,28 @@ export function FAQ() {
 
   if (isLoading) {
     return (
-        <section className="py-20 md:py-28">
+        <AnimatedSection className="py-20 md:py-28">
             <div className="container max-w-3xl mx-auto">
-                 <div className="text-center mb-16">
+                 <AnimatedItem className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
-                </div>
+                </AnimatedItem>
                 <div className="space-y-4">
                     <Skeleton className="h-16 w-full" />
                     <Skeleton className="h-16 w-full" />
                     <Skeleton className="h-16 w-full" />
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
     )
   }
 
   return (
-    <section className="py-20 md:py-28">
+    <AnimatedSection className="py-20 md:py-28" amount={0.25}>
       <div className="container max-w-3xl mx-auto">
-        <div className="text-center mb-12">
+        <AnimatedItem className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
-        </div>
-        <Accordion type="single" collapsible className="w-full">
+        </AnimatedItem>
+        <Accordion type="single" collapsible className="w-full rounded-2xl border border-border/60 bg-background/70 p-4 shadow-sm backdrop-blur">
           {faqs?.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="text-lg text-left">{faq.question}</AccordionTrigger>
@@ -59,6 +60,6 @@ export function FAQ() {
           ))}
         </Accordion>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

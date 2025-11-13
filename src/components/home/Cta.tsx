@@ -1,32 +1,25 @@
 
 'use client'
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export function Cta() {
 
   return (
-    <section className="py-20 md:py-28">
+    <AnimatedSection className="py-20 md:py-28" amount={0.4}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary to-secondary p-8 md:p-12 text-center"
-        >
-          <div className="absolute inset-0 bg-[url(/circuit-board.svg)] bg-repeat opacity-5"></div>
+        <AnimatedItem className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary via-cyan-500 to-secondary p-8 text-center md:p-12">
+          <div className="absolute inset-0 bg-[url(/circuit-board.svg)] bg-repeat opacity-10" />
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
+            <h2 className="text-3xl font-bold text-primary-foreground md:text-4xl">
               Build the next wave of intelligent systems.
             </h2>
-            <p className="mt-4 max-w-2xl mx-auto text-primary-foreground/80">
+            <p className="mt-4 mx-auto max-w-2xl text-primary-foreground/85">
               Whether you're looking to solve complex industry challenges or be the first to experience the future of assistive robotics, we want to hear from you.
             </p>
-            <div className="mt-8 flex justify-center gap-4">
-              <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-primary">
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+              <Button asChild size="lg" variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-primary">
                 <Link href="/contact">Collaborate With Us</Link>
               </Button>
               <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
@@ -34,8 +27,8 @@ export function Cta() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </AnimatedItem>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

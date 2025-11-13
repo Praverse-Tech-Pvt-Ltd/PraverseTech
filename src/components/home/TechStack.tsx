@@ -1,6 +1,7 @@
 
 'use client'
 import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import { TECH_STACK } from '@/lib/data';
 import {
   Tooltip,
@@ -25,20 +26,14 @@ const tooltips: { [key: string]: string } = {
 
 export function TechStack() {
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <AnimatedSection className="py-20 md:py-28 bg-background" amount={0.35}>
       <div className="container">
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-        >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Trending Tech & R&D Focus</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+        <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Trending Tech & R&D Focus</h2>
+            <p className="mt-4 text-base text-muted-foreground md:text-lg">
                 We are constantly exploring and mastering the technologies that will define the next decade.
             </p>
-        </motion.div>
+        </AnimatedItem>
         
         <TooltipProvider>
             <div className="relative flex overflow-hidden group">
@@ -70,6 +65,6 @@ export function TechStack() {
         </TooltipProvider>
 
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

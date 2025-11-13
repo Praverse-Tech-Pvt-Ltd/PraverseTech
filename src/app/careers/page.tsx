@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight, BrainCircuit, Code, Rocket } from 'lucide-react';
 import { JOB_OPENINGS } from '@/lib/careers-data';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 const heroImage = PlaceHolderImages.find(p => p.id === 'careers-hero');
 
@@ -31,51 +32,57 @@ const whyWorkWithUs = [
 export default function CareersPage() {
   return (
     <div>
-      <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 bg-primary text-primary-foreground">
+      <AnimatedSection className="relative bg-primary pt-24 pb-12 text-primary-foreground md:pt-32 md:pb-20" amount={0.55}>
         {heroImage && 
           <Image 
             src={heroImage.imageUrl} 
             alt={heroImage.description} 
             fill
+            sizes="100vw"
             className="object-cover opacity-10"
             data-ai-hint={heroImage.imageHint}
           />
         }
         <div className="container relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold">Join Our Mission</h1>
-          <p className="mt-4 text-lg text-primary-foreground/80 max-w-3xl mx-auto">
+          <AnimatedItem>
+          <h1 className="text-4xl font-bold md:text-5xl">Join Our Mission</h1>
+          </AnimatedItem>
+          <AnimatedItem delay={0.1}>
+          <p className="mt-4 mx-auto max-w-3xl text-base text-primary-foreground/80 md:text-lg">
             We are building the future of intelligent systems. If you are passionate about solving hard problems and creating technology that matters, you’ve come to the right place.
           </p>
+          </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 md:py-28">
+      <AnimatedSection className="py-20 md:py-28" staggerChildren={0.15}>
         <div className="container">
-            <div className="text-center mb-16">
+            <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
                 <h2 className="text-3xl md:text-4xl font-bold">Why Work at Praverse Tech?</h2>
                 <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">We're more than a company; we're a hub for innovation.</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            </AnimatedItem>
+            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {whyWorkWithUs.map(item => (
-                    <div key={item.title} className="text-center space-y-4">
-                        <div className="mx-auto bg-background p-4 rounded-full w-fit border">{item.icon}</div>
+                    <AnimatedItem key={item.title} className="space-y-4 rounded-2xl border border-border/60 bg-background/70 p-6 text-center shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div className="mx-auto w-fit rounded-full border border-primary/30 bg-primary/10 p-4">{item.icon}</div>
                         <h3 className="font-bold text-xl">{item.title}</h3>
                         <p className="text-muted-foreground text-sm">{item.description}</p>
-                    </div>
+                    </AnimatedItem>
                 ))}
             </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 md:py-28 bg-muted">
+      <AnimatedSection className="bg-muted py-20 md:py-28" staggerChildren={0.15}>
         <div className="container">
-            <div className="text-center mb-16">
+            <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
                 <h2 className="text-3xl md:text-4xl font-bold">Current Openings</h2>
                 <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">Ready to make your mark? Find your role below.</p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            </AnimatedItem>
+            <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
                 {JOB_OPENINGS.map(job => (
-                    <Card key={job.title} className="glassmorphism hover:border-primary/50">
+                    <AnimatedItem key={job.title}>
+                    <Card className="glassmorphism h-full transition-transform duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-xl">
                         <CardHeader>
                             <CardTitle>{job.title}</CardTitle>
                             <CardDescription>{job.location} &middot; {job.type}</CardDescription>
@@ -89,16 +96,17 @@ export default function CareersPage() {
                             </Button>
                         </div>
                     </Card>
+                    </AnimatedItem>
                 ))}
             </div>
-             <div className="text-center mt-12">
+             <AnimatedItem className="mt-12 text-center">
                 <p className="text-muted-foreground">Don't see your role? We're always looking for talent.</p>
                 <Button asChild variant="link">
                     <Link href="/contact">Submit a general application</Link>
                 </Button>
-             </div>
+             </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import { Calendar, Clock } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 type Props = {
   params: { slug: string };
@@ -81,19 +82,25 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article>
-      <header className="relative py-24 md:py-40 bg-muted/30">
+      <AnimatedSection as="header" className="relative bg-muted/30 py-24 md:py-40" amount={0.4}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-cyan-500/10" />
          <div className="absolute inset-0 border-b border-white/5" />
 
         <div className="container relative z-10 text-center">
-            {isFounderPost && <Badge variant="secondary" className="mb-4">Founder Insight</Badge>}
-          <div className="flex justify-center gap-2 mb-4">
+            {isFounderPost && (
+              <AnimatedItem>
+                <Badge variant="secondary" className="mb-4">Founder Insight</Badge>
+              </AnimatedItem>
+            )}
+          <AnimatedItem className="mb-4 flex justify-center gap-2">
             {post.metadata.tags && post.metadata.tags.filter(t => t !== 'Founder Insights').map(tag => (
-              <Badge key={tag} variant="outline" className="text-sm bg-background/30 backdrop-blur-sm">{tag}</Badge>
+              <Badge key={tag} variant="outline" className="bg-background/30 text-sm backdrop-blur-sm">{tag}</Badge>
             ))}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold max-w-4xl mx-auto">{post.metadata.title}</h1>
-          <div className="mt-8 flex justify-center items-center gap-6 text-sm">
+          </AnimatedItem>
+          <AnimatedItem delay={0.1}>
+          <h1 className="mx-auto max-w-4xl text-4xl font-bold md:text-5xl">{post.metadata.title}</h1>
+          </AnimatedItem>
+          <AnimatedItem delay={0.2} className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <Avatar className="h-8 w-8">
                 {authorAvatar && <AvatarImage src={authorAvatar.imageUrl} alt={post.metadata.author} />}
@@ -106,15 +113,15 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
             <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4"/>{new Date(post.metadata.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             <span className="flex items-center gap-1.5"><Clock className="h-4 w-4"/>{post.readingTime}</span>
-          </div>
+          </AnimatedItem>
         </div>
-      </header>
-      <div className="container pb-20 prose dark:prose-invert max-w-3xl mx-auto">
+      </AnimatedSection>
+      <AnimatedSection as="div" className="container prose mx-auto max-w-3xl pb-20 dark:prose-invert" amount={0.3}>
         {content}
-      </div>
+      </AnimatedSection>
 
        {isFounderPost && (
-        <section className="py-20 bg-muted/50">
+        <AnimatedSection className="bg-muted/50 py-20" amount={0.35}>
             <div className="container text-center">
                 <h2 className="text-2xl font-bold">Want to collaborate on the future of AI in healthcare?</h2>
                 <div className="mt-6 flex justify-center gap-4">
@@ -126,7 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </Button>
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
        )}
     </article>
   );

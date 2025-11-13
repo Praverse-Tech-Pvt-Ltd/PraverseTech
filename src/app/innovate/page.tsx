@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Handshake, Lightbulb, Rocket, ShieldCheck } from 'lucide-react';
 import { InnovateForm } from '@/components/innovate/InnovateForm';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 const processSteps = [
     { name: 'Submit Idea', description: 'Fill out our confidential pitch form with your concept.' },
@@ -15,22 +16,26 @@ const processSteps = [
 export default function InnovatePage() {
   return (
     <div>
-        <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 bg-primary text-primary-foreground">
+        <AnimatedSection className="relative bg-primary pt-24 pb-12 text-primary-foreground md:pt-32 md:pb-20" amount={0.5}>
             <div className="absolute inset-0 bg-[url(/circuit-board.svg)] bg-repeat opacity-5"></div>
             <div className="container relative z-10 text-center">
+                <AnimatedItem>
                 <h1 className="text-4xl md:text-5xl font-bold">Innovate With Us</h1>
-                <p className="mt-4 text-lg text-primary-foreground/80 max-w-3xl mx-auto">
+                </AnimatedItem>
+                <AnimatedItem delay={0.1}>
+                <p className="mt-4 mx-auto max-w-3xl text-base text-primary-foreground/80 md:text-lg">
                     Your ideas have the power to change industries. We provide the expertise, resources, and partnership to help you bring them to life.
                 </p>
+                </AnimatedItem>
             </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="py-20 md:py-28">
+        <AnimatedSection className="py-20 md:py-28" staggerChildren={0.18}>
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-6">
-                        <h2 className="text-3xl font-bold">Why Collaborate with Praverse?</h2>
-                        <p className="text-muted-foreground text-lg">
+                    <AnimatedItem direction="left" className="space-y-6">
+                        <h2 className="text-3xl font-bold md:text-4xl">Why Collaborate with Praverse?</h2>
+                        <p className="text-base text-muted-foreground md:text-lg">
                             We're more than just a technology provider; we're a launchpad for deep-tech innovation.
                         </p>
                         <ul className="space-y-4">
@@ -62,10 +67,10 @@ export default function InnovatePage() {
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                     <div>
-                        <Card>
-                            <CardHeader>
+                    </AnimatedItem>
+                     <AnimatedItem direction="right">
+                        <Card className="border border-border/60 shadow-xl">
+                            <CardHeader className="space-y-2">
                                 <CardTitle>Pitch Your Idea</CardTitle>
                                 <CardDescription>Ready to start? Fill out the form to submit your concept.</CardDescription>
                             </CardHeader>
@@ -73,38 +78,41 @@ export default function InnovatePage() {
                                 <InnovateForm />
                             </CardContent>
                         </Card>
-                    </div>
+                    </AnimatedItem>
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="py-20 md:py-28 bg-muted">
+        <AnimatedSection className="bg-muted py-20 md:py-28" staggerChildren={0.12}>
             <div className="container">
-                <div className="text-center mb-16">
+                <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
                     <h2 className="text-3xl md:text-4xl font-bold">Our Process</h2>
-                    <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">A transparent and collaborative journey from concept to reality.</p>
-                </div>
+                    <p className="mt-4 text-base text-muted-foreground md:text-lg">A transparent and collaborative journey from concept to reality.</p>
+                </AnimatedItem>
                 <div className="relative max-w-5xl mx-auto">
                      <div className="absolute left-0 top-4 right-0 h-0.5 bg-border -z-10" />
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-center">
                         {processSteps.map((step, index) => (
-                        <div key={step.name} className="flex flex-col items-center">
-                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold mb-2 border-4 border-muted">{index + 1}</div>
+                        <AnimatedItem key={step.name} delay={index * 0.05} className="flex flex-col items-center">
+                            <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border-4 border-muted bg-primary text-base font-bold text-primary-foreground shadow-md">{index + 1}</div>
                             <h4 className="font-semibold">{step.name}</h4>
                             <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
-                        </div>
+                        </AnimatedItem>
                         ))}
                     </div>
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
 
-        <section className="py-20">
+        <AnimatedSection className="py-20" amount={0.3}>
             <div className="container">
-            <Card className="bg-primary/5">
-                <CardHeader className="text-center flex-row items-center justify-center gap-4">
-                    <ShieldCheck className="w-8 h-8 text-green-500" />
-                    <CardTitle>Your Ideas Are Safe With Us</CardTitle>
+            <AnimatedItem>
+            <Card className="border border-primary/20 bg-primary/5">
+                <CardHeader className="flex-row items-center justify-center gap-4 text-center">
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <ShieldCheck className="w-8 h-8 text-green-500" />
+                    </div>
+                    <CardTitle className="text-xl font-bold md:text-2xl">Your Ideas Are Safe With Us</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center max-w-3xl mx-auto">
                 <p className="text-muted-foreground">
@@ -112,8 +120,9 @@ export default function InnovatePage() {
                 </p>
                 </CardContent>
             </Card>
+            </AnimatedItem>
             </div>
-      </section>
+      </AnimatedSection>
     </div>
   )
 }

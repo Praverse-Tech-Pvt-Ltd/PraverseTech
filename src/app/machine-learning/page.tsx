@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, Cpu, FlaskConical, Microscope, Stethoscope, Layers, Database, Shield } from 'lucide-react';
 import Link from 'next/link';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 const useCases = [
   {
@@ -49,65 +50,78 @@ const principles = [
 export default function MachineLearningPage() {
   return (
     <div>
-      <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 bg-muted">
+      <AnimatedSection className="relative bg-muted pt-24 pb-12 md:pt-32 md:pb-20" amount={0.5}>
         <div className="container text-center">
+          <AnimatedItem>
           <Badge>Machine Learning</Badge>
-          <h1 className="mt-4 text-4xl md:text-5xl font-bold">Machine Learning at Praverse Tech</h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+          </AnimatedItem>
+          <AnimatedItem delay={0.1}>
+          <h1 className="mt-4 text-4xl font-bold md:text-5xl">Machine Learning at Praverse Tech</h1>
+          </AnimatedItem>
+          <AnimatedItem delay={0.2}>
+          <p className="mt-4 mx-auto max-w-3xl text-base text-muted-foreground md:text-lg">
             We don’t just train models — we build production-grade ML systems that solve real-world challenges with noisy data, edge constraints, and regulatory oversight.
           </p>
+          </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 md:py-28">
+      <AnimatedSection className="py-20 md:py-28" staggerChildren={0.12}>
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold">Applied AI Use Cases</h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">How we turn machine learning theory into production-ready solutions.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl">Applied AI Use Cases</h2>
+            <p className="mt-4 text-base text-muted-foreground md:text-lg">How we turn machine learning theory into production-ready solutions.</p>
+          </AnimatedItem>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {useCases.map(useCase => (
-              <Card key={useCase.title} className="text-center hover:shadow-xl transition-shadow glassmorphism">
+              <AnimatedItem key={useCase.title}>
+              <Card className="glassmorphism h-full text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
                 <CardHeader>
-                  <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">{useCase.icon}</div>
+                  <div className="mx-auto w-fit rounded-full bg-primary/10 p-4">{useCase.icon}</div>
                   <CardTitle className="mt-4">{useCase.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-sm">{useCase.description}</p>
                 </CardContent>
               </Card>
+              </AnimatedItem>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-       <section className="py-20 md:py-28 bg-muted">
+       <AnimatedSection className="bg-muted py-20 md:py-28" staggerChildren={0.15}>
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Our Core ML Principles</h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">We are technology agnostic. Our expertise is in first-principles thinking to select the best tools and architectures for the problem at hand.</p>
-          </div>
-           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <AnimatedItem className="mx-auto mb-12 max-w-2xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl">Our Core ML Principles</h2>
+            <p className="mt-4 text-base text-muted-foreground md:text-lg">We are technology agnostic. Our expertise is in first-principles thinking to select the best tools and architectures for the problem at hand.</p>
+          </AnimatedItem>
+           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
             {principles.map(tech => (
-              <Card key={tech.title} className="bg-background/50">
+              <AnimatedItem key={tech.title}>
+              <Card className="border border-border/60 bg-background/70 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
                 <CardHeader className="flex flex-row items-center gap-4">
                   {tech.icon}
-                  <CardTitle className="text-base">{tech.title}</CardTitle>
+                  <CardTitle className="text-base font-semibold">{tech.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-sm text-muted-foreground">{tech.description}</p>
                 </CardContent>
               </Card>
+              </AnimatedItem>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20">
+      <AnimatedSection className="py-20" amount={0.3}>
         <div className="container">
-          <Card className="bg-primary/5">
-            <CardHeader className="text-center">
-              <CheckCircle className="w-12 h-12 text-green-500 mx-auto" />
+          <AnimatedItem>
+          <Card className="border border-primary/20 bg-primary/5">
+            <CardHeader className="text-center space-y-4">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <CheckCircle className="w-8 h-8 text-green-500" />
+              </div>
               <CardTitle className="mt-4">Trustworthy AI by Design</CardTitle>
             </CardHeader>
             <CardContent className="text-center max-w-3xl mx-auto">
@@ -116,19 +130,20 @@ export default function MachineLearningPage() {
               </p>
             </CardContent>
           </Card>
+          </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
       
-      <section className="py-20 md:pb-28">
+      <AnimatedSection className="py-20 md:pb-28">
         <div className="container">
-          <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary to-secondary p-8 md:p-12 text-center">
-            <div className="absolute inset-0 bg-[url(/circuit-board.svg)] bg-repeat opacity-5"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
+          <AnimatedItem className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary via-cyan-500 to-secondary p-8 text-center md:p-12">
+            <div className="absolute inset-0 bg-[url(/circuit-board.svg)] bg-repeat opacity-10"></div>
+            <div className="relative z-10 space-y-6">
+              <h2 className="text-3xl font-bold text-primary-foreground md:text-4xl">
                 Need a production-ready ML system?
               </h2>
-              <div className="mt-8 flex justify-center gap-4">
-                <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-primary">
+              <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                <Button asChild size="lg" variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-primary">
                   <Link href="/contact">Discuss a Project</Link>
                 </Button>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
@@ -136,9 +151,9 @@ export default function MachineLearningPage() {
                 </Button>
               </div>
             </div>
-          </div>
+          </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
     </div>
   );
 }

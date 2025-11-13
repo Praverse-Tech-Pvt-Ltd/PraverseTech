@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { AnimatedSection } from '@/components/common/AnimatedSection';
 
 export default function PrivacyPage() {
   const [currentDate, setCurrentDate] = useState('');
@@ -15,7 +16,7 @@ export default function PrivacyPage() {
   }, []);
 
   return (
-    <div className="container py-16 prose dark:prose-invert max-w-4xl mx-auto">
+    <AnimatedSection className="container prose mx-auto max-w-4xl py-16 dark:prose-invert">
       <h1>Privacy Policy for Praverse Tech Pvt Ltd</h1>
       <p>Last updated: {currentDate}</p>
 
@@ -57,6 +58,6 @@ export default function PrivacyPage() {
       <p>
         If you have questions or comments about this Privacy Policy, please contact us at: contact@praverse.ai
       </p>
-    </div>
+    </AnimatedSection>
   );
 }

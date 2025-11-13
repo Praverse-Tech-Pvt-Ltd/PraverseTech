@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, CheckCircle, FileText, GanttChartSquare, Layers, Search } from 'lucide-react';
 import Link from 'next/link';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 
 const heroImage = PlaceHolderImages.find(p => p.id === 'pharma-hero');
 
@@ -44,88 +45,100 @@ export default function PharmaAiPage() {
 
   return (
     <div>
-      <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 bg-primary text-primary-foreground">
+      <AnimatedSection className="relative bg-primary pt-24 pb-12 text-primary-foreground md:pt-32 md:pb-20" amount={0.6}>
         {heroImage && 
           <Image 
             src={heroImage.imageUrl} 
             alt={heroImage.description} 
             fill
+            sizes="100vw"
             className="object-cover opacity-20"
             data-ai-hint={heroImage.imageHint}
           />
         }
         <div className="container relative z-10 text-center">
+          <AnimatedItem>
           <Badge variant="secondary">AI for Pharma</Badge>
-          <h1 className="mt-4 text-4xl md:text-5xl font-bold">Automate Compliance, Accelerate Release</h1>
-          <p className="mt-4 text-lg text-primary-foreground/80 max-w-3xl mx-auto">
+          </AnimatedItem>
+          <AnimatedItem delay={0.1}>
+          <h1 className="mt-4 text-4xl font-bold md:text-5xl">Automate Compliance, Accelerate Release</h1>
+          </AnimatedItem>
+          <AnimatedItem delay={0.2}>
+          <p className="mt-4 mx-auto max-w-3xl text-base text-primary-foreground/80 md:text-lg">
             Leverage our specialized AI to navigate the complexities of pharmaceutical compliance, from FDA responses to SOP management.
           </p>
+          </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
       
-      <section className="py-20 md:py-28">
+      <AnimatedSection className="py-20 md:py-28" staggerChildren={0.12}>
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold">Revolutionize Your GxP Workflows</h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">Our AI tools are built to address your most pressing compliance challenges.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl">Revolutionize Your GxP Workflows</h2>
+            <p className="mt-4 text-base text-muted-foreground md:text-lg">Our AI tools are built to address your most pressing compliance challenges.</p>
+          </AnimatedItem>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {useCases.map(useCase => (
-              <Card key={useCase.title} className="text-center">
+              <AnimatedItem key={useCase.title}>
+              <Card className="flex h-full flex-col text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
                 <CardHeader>
-                  <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">{useCase.icon}</div>
+                  <div className="mx-auto mb-4 w-fit rounded-full bg-primary/10 p-4">{useCase.icon}</div>
                   <CardTitle className="mt-4">{useCase.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-sm">{useCase.description}</p>
                 </CardContent>
               </Card>
+              </AnimatedItem>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 md:py-28 bg-muted">
+      <AnimatedSection className="bg-muted py-20 md:py-28" staggerChildren={0.18}>
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.1fr),minmax(0,0.9fr)]">
+            <AnimatedItem direction="left" className="rounded-2xl border border-border/60 bg-background/90 p-6 shadow-lg backdrop-blur">
               <Badge>Live Demo</Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mt-4">FDA 483 Response Generator</h2>
-              <p className="mt-4 text-muted-foreground text-lg">
+              <h2 className="mt-4 text-3xl font-bold md:text-4xl">FDA 483 Response Generator</h2>
+              <p className="mt-4 text-base text-muted-foreground md:text-lg">
                 Experience the power of Praverse Tech. Paste the text of an FDA 483 observation below and watch our AI generate a structured, compliant draft response in seconds.
               </p>
-               <div className="mt-8 p-6 border rounded-lg bg-background">
+               <div className="mt-8 rounded-xl border border-dashed border-primary/30 bg-background p-6">
                 <FdaResponseGenerator />
               </div>
-            </div>
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold">Our Workflow: From Document to Draft</h3>
+            </AnimatedItem>
+            <AnimatedItem direction="right" className="space-y-8">
+              <h3 className="text-2xl font-bold md:text-3xl">Our Workflow: From Document to Draft</h3>
               {workflowSteps.map((step, index) => (
                 <div key={step.name} className="flex gap-4">
                   <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">{index + 1}</div>
-                    {index < workflowSteps.length - 1 && <div className="w-px flex-grow bg-border"></div>}
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground shadow-md">{index + 1}</div>
+                    {index < workflowSteps.length - 1 && <div className="w-px flex-grow bg-border" />}
                   </div>
-                  <div>
-                    <h4 className="font-semibold">{step.name}</h4>
-                    <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <div className="rounded-xl border border-border/50 bg-background/80 p-4 shadow-sm">
+                    <h4 className="font-semibold text-primary">{step.name}</h4>
+                    <p className="text-sm text-muted-foreground md:text-base">{step.description}</p>
                   </div>
                 </div>
               ))}
-            </div>
+            </AnimatedItem>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20">
+      <AnimatedSection className="py-20" amount={0.3}>
         <div className="container">
-          <Card className="bg-primary/5">
-            <CardHeader className="text-center">
-              <CheckCircle className="w-12 h-12 text-green-500 mx-auto" />
+          <AnimatedItem>
+          <Card className="border border-primary/20 bg-primary/5">
+            <CardHeader className="text-center space-y-4">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <CheckCircle className="h-8 w-8 text-green-500" />
+              </div>
               <CardTitle className="mt-4">A Note on Compliance</CardTitle>
             </CardHeader>
             <CardContent className="text-center max-w-3xl mx-auto">
-              <p className="text-muted-foreground">
+              <p className="text-sm text-muted-foreground md:text-base">
                 Praverse Tech's tools are designed to align with industry best practices and guidelines such as USFDA 21 CFR Part 211, ICH Q9 (Quality Risk Management), and ICH Q10 (Pharmaceutical Quality System). Our platform acts as a powerful assistant, augmenting the expertise of your QA and RA teams. All AI-generated outputs are intended as drafts and require final review and approval by qualified personnel. We do not make any legal claims of guaranteed compliance.
               </p>
               <Button asChild className="mt-6">
@@ -133,8 +146,9 @@ export default function PharmaAiPage() {
               </Button>
             </CardContent>
           </Card>
+          </AnimatedItem>
         </div>
-      </section>
+      </AnimatedSection>
     </div>
   );
 }

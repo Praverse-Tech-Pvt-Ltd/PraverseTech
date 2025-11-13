@@ -1,47 +1,36 @@
 'use client'
-import { motion } from 'framer-motion';
+import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function Vision() {
     const visionImage = PlaceHolderImages.find(p => p.id === 'home-vision-bg');
     return (
-        <section className="py-20 md:py-28 bg-muted">
+        <AnimatedSection className="py-20 md:py-28 bg-muted" staggerChildren={0.25}>
             <div className="container">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                        className="relative aspect-square rounded-lg overflow-hidden shadow-2xl"
-                    >
+                <div className="grid gap-12 items-center md:grid-cols-2">
+                    <AnimatedItem direction="left" className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border/60 bg-background/40 shadow-xl backdrop-blur">
                         {visionImage && 
                             <Image 
                                 src={visionImage.imageUrl} 
                                 alt={visionImage.description} 
                                 fill
-                                className="object-cover"
+                                sizes="(min-width: 1024px) 45vw, (min-width: 768px) 50vw, 90vw"
+                                className="object-cover transition-transform duration-700 hover:scale-105"
                                 data-ai-hint={visionImage.imageHint}
                             />
                         }
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-6"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
+                    </AnimatedItem>
+                    <AnimatedItem direction="right" className="space-y-6">
+                        <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
                             Our Manifesto
                         </h2>
-                        <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
+                        <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
                             We believe AI should not replace people — it should amplify <span className="text-primary font-semibold">precision</span>, <span className="text-primary font-semibold">compassion</span>, & <span className="text-primary font-semibold">efficiency</span>. Our mission is to fuse deep learning, robotics, & ethical intelligence for tomorrow’s industries.
                         </p>
-                    </motion.div>
+                    </AnimatedItem>
                 </div>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }
