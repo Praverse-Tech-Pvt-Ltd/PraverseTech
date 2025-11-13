@@ -1,4 +1,3 @@
-
 'use client'
 import { motion, useMotionValue, useMotionTemplate, animate } from 'framer-motion';
 import { useEffect } from 'react';
@@ -34,7 +33,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-primary-foreground"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground"
         >
           Engineering Human-Centered Intelligence.
         </motion.h1>
@@ -42,7 +41,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-primary-foreground/80"
+          className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-foreground/80"
         >
           From Pharma AI to Humanoid Robotics and Federated Learning — Praverse Tech pioneers systems that learn, perceive, and collaborate.
         </motion.p>
