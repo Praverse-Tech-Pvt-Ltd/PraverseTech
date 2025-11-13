@@ -1,3 +1,4 @@
+
 'use client'
 import { motion, useMotionValue, useMotionTemplate, animate } from 'framer-motion';
 import { useEffect } from 'react';
@@ -43,7 +44,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-foreground/80"
         >
-          From Pharma AI to Humanoid Robotics and Federated Learning — Praverse Tech pioneers systems that learn, perceive, and collaborate.
+          Praverse Tech pioneers intelligent systems that learn, perceive, and collaborate — from pharma AI to humanoid robotics and next-gen bio-intelligence. Bringing Innovations to Market.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

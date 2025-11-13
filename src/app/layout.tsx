@@ -9,8 +9,8 @@ import { FirebaseClientProvider } from '@/firebase';
 import { PravProvider } from '@/components/assistant/PravProvider';
 
 export const metadata: Metadata = {
-  title: 'Praverse Tech - Domain-Smart AI for Pharma & Healthcare',
-  description: 'Praverse Tech helps pharma & healthcare teams automate compliance and patient workflows with safe, explainable AI.',
+  title: 'Praverse Tech - Bringing Innovations to Market',
+  description: 'Praverse Tech pioneers intelligent systems that learn, perceive, and collaborate — from pharma AI to humanoid robotics and next-gen bio-intelligence. Bringing Innovations to Market.',
 };
 
 export default function RootLayout({

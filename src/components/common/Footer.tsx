@@ -27,7 +27,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
           <div className="space-y-4 md:col-span-4">
             <Logo />
-            <p className="text-sm text-muted-foreground">Innovation in AI & Robotics.</p>
+            <p className="text-sm text-muted-foreground">Bringing Innovations to Market.</p>
             <address className="text-sm text-muted-foreground not-italic">
               Bangalore, India | Global Operations
             </address>
