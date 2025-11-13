@@ -1,9 +1,23 @@
 
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export default function HealthmateTermsPage() {
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    setCurrentDate(new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    }));
+  }, []);
+
   return (
     <div className="container py-16 prose dark:prose-invert max-w-4xl mx-auto">
       <h1>HealthMate Terms of Service</h1>
-      <p>Last updated: {new Date().toLocaleDateString()}</p>
+      <p>Last updated: {currentDate}</p>
 
       <h2>1. Introduction</h2>
       <p>
