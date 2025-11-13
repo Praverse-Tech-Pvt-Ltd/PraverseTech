@@ -12,21 +12,21 @@ const collaborationItems = [
         title: 'Pitch Your Concept',
         description: 'Turn your idea into a structured proposal. We review every high-potential pitch personally.',
         buttonText: 'Submit Your Idea',
-        href: '/contact'
+        href: '/innovate'
     },
     {
         icon: Handshake,
         title: 'Co-build & Innovate Together',
         description: 'Partner with Praverse Tech to co-develop AI/ML models, software tools, robotics solutions, or healthcare innovations.',
         buttonText: 'Collaborate',
-        href: '/contact'
+        href: '/innovate'
     },
     {
         icon: BrainCircuit,
         title: 'Founder Guidance & Technical Direction',
         description: 'Get direction, prototype support, architectural guidance, and help in taking your idea to market.',
         buttonText: 'Get Mentored',
-        href: '/contact'
+        href: '/innovate'
     }
 ];
 
@@ -86,7 +86,7 @@ export function Collaborations() {
                         <div className="relative z-10">
                             <h3 className="text-2xl font-bold">Have a game-changing idea? Let’s bring it to life.</h3>
                             <Button asChild className="mt-6">
-                                <Link href="/contact">Start Your Pitch <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                                <Link href="/innovate">Start Your Pitch <ArrowRight className="ml-2 h-4 w-4" /></Link>
                             </Button>
                         </div>
                     </div>
