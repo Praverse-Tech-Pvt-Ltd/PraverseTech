@@ -42,7 +42,7 @@ export default function AboutPage() {
             </div>
             <div>
               {heroImage && 
-                <Image src={heroImage.imageUrl} alt={heroImage.description} width={1200} height={800} className="rounded-lg" data-ai-hint={heroImage.imageHint}/>
+                <Image src={heroImage.imageUrl} alt={heroImage.description} width={600} height={600} className="rounded-lg object-cover aspect-square" data-ai-hint={heroImage.imageHint}/>
               }
             </div>
           </div>

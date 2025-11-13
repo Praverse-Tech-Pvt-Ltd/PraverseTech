@@ -39,8 +39,8 @@
     {
       "id": "about-mission",
       "description": "An abstract image representing vision and mission",
-      "imageUrl": "https://images.unsplash.com/photo-1605106702842-01a887a31122?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMHNoYXBlc3xlbnwwfHx8fDE3NjI4OTEwODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract shapes"
+      "imageUrl": "https://images.unsplash.com/photo-1620712943543-285f7266c8da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlfGVufDB8fHx8MTc2MzAzMzg2MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artificial intelligence"
     },
     {
       "id": "pharma-hero",
@@ -146,9 +146,27 @@
     },
     {
       "id": "careers-hero",
-      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageUrl": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb2xsYWJvcmF0aXZlJTIwdGVhbXxlbnwwfHx8fDE3NjMwMzUwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "description": "A collaborative team working in a modern office",
-      "imageHint": "team office"
+      "imageHint": "collaborative team"
+    },
+    {
+      "id": "lab-vision-ai",
+      "imageUrl": "https://images.unsplash.com/photo-1579154942207-e435a5895dc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtZWRpY2FsJTIwaW1hZ2luZ3xlbnwwfHx8fDE3NjMwMzYxNTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Medical imaging analysis of a brain scan",
+      "imageHint": "medical imaging"
+    },
+    {
+      "id": "lab-edge-ai",
+      "imageUrl": "https://images.unsplash.com/photo-1696253914445-c26a8460459a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlZGdlJTIwYWl8ZW58MHx8fHwxNzYzMDM1NTUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "An edge AI device processing data",
+      "imageHint": "edge ai"
+    },
+    {
+      "id": "lab-simulation",
+      "imageUrl": "https://images.unsplash.com/photo-1675663758368-76a08d23c34c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb2JvdCUyMHNpbXVsYXRpb258ZW58MHx8fHwxNzYzMDM1NjM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A simulation of a robot arm in a virtual environment",
+      "imageHint": "robot simulation"
     }
   ]
 }

@@ -6,12 +6,13 @@ import { Card, CardContent } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Eye, Brain, Cpu, Orbit } from 'lucide-react';
 import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const tabs = [
-    { id: 'vision', label: 'Vision AI', icon: Eye },
-    { id: 'language', label: 'Language AI', icon: Brain },
-    { id: 'edge', label: 'Edge AI', icon: Cpu },
-    { id: 'simulation', label: 'Simulation', icon: Orbit },
+    { id: 'vision', label: 'Vision AI', icon: Eye, imageId: 'lab-vision-ai', title: 'Medical Imaging Analysis', description: 'Detecting anomalies in retinal scans.' },
+    { id: 'language', label: 'Language AI', icon: Brain, imageId: 'project-fda', title: 'FDA 483 Response Generation', description: 'AI-drafted response to regulatory observations.' },
+    { id: 'edge', label: 'Edge AI', icon: Cpu, imageId: 'lab-edge-ai', title: 'Edge Device Inference', description: 'Running lightweight models on embedded systems.' },
+    { id: 'simulation', label: 'Simulation', icon: Orbit, imageId: 'lab-simulation', title: 'Humanoid Pathing Simulation', description: 'Training robots in a physics-based virtual environment.' },
 ]
 
 export function AILabsShowcase() {
@@ -41,54 +42,23 @@ export function AILabsShowcase() {
                             </TabsTrigger>
                         ))}
                     </TabsList>
-                    <TabsContent value="vision" className="mt-6">
-                        <Card>
-                            <CardContent className="p-6 text-center">
-                                <h3 className="text-lg font-semibold">Medical Imaging Analysis</h3>
-                                <p className="text-muted-foreground text-sm mt-1 mb-4">Detecting anomalies in retinal scans.</p>
-                                <div className="relative aspect-video max-w-xl mx-auto rounded-lg overflow-hidden border">
-                                    <Image src="https://images.unsplash.com/photo-1639772823849-6efbd173043c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaGFybWFjZXV0aWNhbCUyMGxhYm9yYXRvcnl8ZW58MHx8fHwxNzYyOTUzNDE5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="retina scan" layout="fill" objectFit="cover" data-ai-hint="retina scan" />
-                                    <div className="absolute inset-0 bg-black/10" />
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="language" className="mt-6">
-                         <Card>
-                            <CardContent className="p-6 text-center">
-                                <h3 className="text-lg font-semibold">FDA 483 Response Generation</h3>
-                                <p className="text-muted-foreground text-sm mt-1 mb-4">AI-drafted response to regulatory observations.</p>
-                                <div className="max-w-xl mx-auto p-4 border rounded-lg bg-background text-left text-xs">
-                                    <p className="font-semibold">Observation 1: Lack of dynamic smoke studies.</p>
-                                    <p className="mt-2"><span className="font-bold text-primary">AI Draft:</span> Acknowledged. We have initiated a protocol to conduct comprehensive smoke studies under dynamic conditions for all aseptic processing lines. The study will be completed by Q3 2025, and all operators will be retrained.</p>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="edge" className="mt-6">
-                         <Card>
-                            <CardContent className="p-6 text-center">
-                                <h3 className="text-lg font-semibold">Edge Device Inference</h3>
-                                <p className="text-muted-foreground text-sm mt-1 mb-4">Running lightweight models on embedded systems.</p>
-                                 <div className="relative aspect-video max-w-xl mx-auto rounded-lg overflow-hidden border">
-                                    <Image src="https://images.unsplash.com/photo-1596638243887-fe8c3efe5911?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbWJlZGRlZCUyMHN5c3RlbXxlbnwwfHx8fDE3NjMwNTA5NTN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Embedded System" layout="fill" objectFit="cover" data-ai-hint="embedded system" />
-                                    <div className="absolute inset-0 bg-black/10" />
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="simulation" className="mt-6">
-                         <Card>
-                            <CardContent className="p-6 text-center">
-                                <h3 className="text-lg font-semibold">Humanoid Pathing Simulation</h3>
-                                <p className="text-muted-foreground text-sm mt-1 mb-4">Training robots in a physics-based virtual environment.</p>
-                                 <div className="relative aspect-video max-w-xl mx-auto rounded-lg overflow-hidden border">
-                                    <Image src="https://images.unsplash.com/photo-1651530065437-9d961dc5e8d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm9ib3QlMjBzaW11bGF0aW9ufGVufDB8fHx8MTc2Mjk3MjAxOHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Robot simulation" layout="fill" objectFit="cover" data-ai-hint="robot simulation" />
-                                    <div className="absolute inset-0 bg-black/10" />
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
+                    {tabs.map(tab => {
+                        const image = PlaceHolderImages.find(p => p.id === tab.imageId);
+                        return (
+                            <TabsContent key={tab.id} value={tab.id} className="mt-6">
+                                <Card>
+                                    <CardContent className="p-6 text-center">
+                                        <h3 className="text-lg font-semibold">{tab.title}</h3>
+                                        <p className="text-muted-foreground text-sm mt-1 mb-4">{tab.description}</p>
+                                        <div className="relative aspect-video max-w-xl mx-auto rounded-lg overflow-hidden border">
+                                            {image && <Image src={image.imageUrl} alt={tab.title} layout="fill" objectFit="cover" data-ai-hint={image.imageHint} />}
+                                            <div className="absolute inset-0 bg-black/10" />
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </TabsContent>
+                        )
+                    })}
                 </Tabs>
             </div>
         </section>
