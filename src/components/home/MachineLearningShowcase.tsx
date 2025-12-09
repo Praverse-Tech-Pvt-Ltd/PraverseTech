@@ -7,71 +7,68 @@ import { ArrowRight, CheckCircle, Database, Layers, BrainCircuit, Bot, Network }
 import { Card, CardContent } from '../ui/card';
 
 const pipelineSteps = [
-    { name: 'Data', icon: <Database className="w-6 h-6"/> },
-    { name: 'Feature Eng.', icon: <Layers className="w-6 h-6"/> },
-    { name: 'Training', icon: <BrainCircuit className="w-6 h-6"/> },
-    { name: 'Evaluation', icon: <Bot className="w-6 h-6"/> },
-    { name: 'Deployment', icon: <Network className="w-6 h-6"/> }
+    { name: 'Data', icon: <Database className="w-8 h-8"/> },
+    { name: 'Feature Eng.', icon: <Layers className="w-8 h-8"/> },
+    { name: 'Training', icon: <BrainCircuit className="w-8 h-8"/> },
+    { name: 'Evaluation', icon: <Bot className="w-8 h-8"/> },
+    { name: 'Deployment', icon: <Network className="w-8 h-8"/> }
 ];
 
 export function MachineLearningShowcase() {
   return (
     <AnimatedSection className="py-20 md:py-28 bg-background" staggerChildren={0.2}>
       <div className="container">
-        <div className="grid items-center gap-12 md:grid-cols-2">
-          <AnimatedItem direction="left" className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+        <div className="grid items-center gap-16 md:grid-cols-2">
+          <AnimatedItem direction="left" className="space-y-8">
+            <h2 className="text-4xl font-bold tracking-tighter md:text-5xl font-headline">
               Machine Learning & Applied AI
             </h2>
-            <p className="text-base text-muted-foreground md:text-lg">
-              From clinical decision support to intelligent automation, Praverse Tech designs and deploys machine-learning systems that actually ship — robust, explainable and production-ready.
+            <p className="text-lg text-muted-foreground md:text-xl">
+              From clinical decision support to intelligent automation, we design and deploy robust, explainable, and production-ready machine learning systems.
             </p>
-            <ul className="space-y-3 text-muted-foreground">
-              <li className="flex items-start">
-                <CheckCircle className="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>End-to-end ML lifecycle: data → model → validation → deployment.</span>
+            <ul className="space-y-4 text-lg text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-primary" />
+                <span><strong className='text-foreground'>End-to-End Lifecycle:</strong> From data to deployment, we handle the entire ML pipeline.</span>
               </li>
-              <li className="flex items-start">
-                <CheckCircle className="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>Computer vision for healthcare & imaging (fundus, ultrasound, diagnostics).</span>
+              <li className="flex items-start gap-3">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-primary" />
+                <span><strong className='text-foreground'>Advanced CV & NLP:</strong> Expertise in medical imaging, document analysis, and conversational AI.</span>
               </li>
-              <li className="flex items-start">
-                <CheckCircle className="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>NLP for assistants, triage bots, and document understanding.</span>
-              </li>
-               <li className="flex items-start">
-                <CheckCircle className="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>MLOps: monitoring, drift detection, and CI/CD for ML in production.</span>
+              <li className="flex items-start gap-3">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-primary" />
+                <span><strong className='text-foreground'>MLOps & Automation:</strong> CI/CD for ML, ensuring your models are always production-ready.</span>
               </li>
             </ul>
-             <Button asChild>
-                <Link href="/machine-learning">Explore ML Work <ArrowRight className="ml-2 h-4 w-4" /></Link>
+             <Button asChild size="lg">
+                <Link href="/machine-learning">Explore ML Work <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </AnimatedItem>
-          <AnimatedItem direction="right">
-             <Card className="glassmorphism border-border/50 p-6">
-                <CardContent className="p-0">
-                    <h3 className="text-center font-semibold mb-4">Production ML Pipeline</h3>
-                    <div className="relative flex flex-wrap items-center justify-between gap-6">
+          <AnimatedItem direction="right" className="[perspective:1500px]">
+             <Card className="border-border/40 bg-card/80 [transform:rotateY(-10deg)_rotateX(5deg)] hover:[transform:rotateY(0)_rotateX(0)] transition-transform duration-500 ease-out">
+                <CardContent className="p-8">
+                    <h3 className="text-center font-semibold text-2xl mb-8 text-foreground">Production ML Pipeline</h3>
+                    <div className="relative flex items-center justify-between gap-2">
                         {pipelineSteps.map((step, index) => (
                            <AnimatedItem
                                 key={step.name}
-                                className="flex flex-col items-center gap-2 z-10"
-                                delay={index * 0.08}
+                                className="flex flex-col items-center gap-3 z-10 group"
+                                delay={index * 0.1}
                             >
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary shadow-inner">
+                                <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary/20 bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 shadow-lg">
                                     {step.icon}
                                 </div>
-                                <span className="text-xs font-medium text-muted-foreground md:text-sm">{step.name}</span>
+                                <span className="text-sm font-medium text-muted-foreground transition-colors duration-300 group-hover:text-foreground">{step.name}</span>
                            </AnimatedItem>
                         ))}
-                        <div className="absolute left-0 top-1/2 -z-10 h-0.5 w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-border to-transparent" />
+                        <div className="absolute left-0 top-10 -z-10 h-1 w-full bg-border" />
+                        <div className="absolute left-0 top-10 -z-10 h-1 w-full bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-300 origin-left" />
                     </div>
-                    <div className="mt-4 flex flex-wrap justify-center gap-2">
-                        <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">Vision</span>
-                        <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">NLP</span>
-                        <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">Tabular</span>
-                        <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">Edge</span>
+                    <div className="mt-8 flex flex-wrap justify-center gap-3">
+                        <span className="rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-muted-foreground">Computer Vision</span>
+                        <span className="rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-muted-foreground">NLP</span>
+                        <span className="rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-muted-foreground">Tabular Data</span>
+                        <span className="rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-muted-foreground">Edge AI</span>
                     </div>
                 </CardContent>
              </Card>

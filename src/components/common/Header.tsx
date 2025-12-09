@@ -33,6 +33,8 @@ export function Header() {
   }, []);
 
   const renderNavLink = (link: NavLink, isMobile: boolean = false) => {
+    const isExplore = link.label === 'Explore';
+
     if (link.children) {
         if (isMobile) {
             return (
@@ -40,7 +42,7 @@ export function Header() {
                     <h4 className="font-semibold px-4">{link.label}</h4>
                     <div className="flex flex-col space-y-2 mt-2">
                     {link.children.map(child => (
-                        <Link key={child.href} href={child.href} className="text-muted-foreground hover:text-primary pl-8 pr-4 py-2">{child.label}</Link>
+                        <Link key={child.href} href={child.href} className="text-muted-foreground pl-8 pr-4 py-2">{child.label}</Link>
                     ))}
                     </div>
                 </div>
@@ -49,7 +51,15 @@ export function Header() {
       return (
         <DropdownMenu key={link.label}>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-foreground data-[state=open]:bg-accent/50 px-3 flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              className={cn(
+                'text-sm font-medium text-muted-foreground data-[state=open]:text-primary px-3 flex items-center gap-1',
+                {
+                  'text-primary': isExplore && link.children?.some(child => pathname.startsWith(child.href))
+                }
+              )}
+            >
               {link.label}
               <ChevronDown className="h-4 w-4 transition duration-200" />
             </Button>
@@ -70,7 +80,7 @@ export function Header() {
         key={link.href}
         href={link.href}
         className={cn(
-          'text-sm font-medium transition-colors hover:text-primary',
+          'text-sm font-medium transition-colors',
           pathname === link.href ? 'text-primary' : 'text-muted-foreground',
            isMobile ? 'text-base px-4 py-2' : 'px-3'
         )}
@@ -83,8 +93,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full border-b transition-all duration-300',
-        isScrolled ? 'border-border bg-background/80 backdrop-blur-lg' : 'border-transparent bg-background'
+        'sticky top-0 z-50 w-full border-b transition-all duration-300 bg-background',
+        isScrolled ? 'border-border' : 'border-transparent'
       )}
     >
       <div className="container flex h-16 items-center">

@@ -20,97 +20,95 @@ export function Insights({ founderPost, otherPosts }: InsightsProps) {
     }
 
     return (
-        <AnimatedSection className="py-20 md:py-28 bg-muted" staggerChildren={0.15}>
+        <AnimatedSection className="py-20 md:py-28 bg-background" staggerChildren={0.15}>
             <div className="container">
-                <AnimatedItem className="mx-auto mb-16 max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Insights & Research</h2>
-                    <p className="mt-4 text-base text-muted-foreground md:text-lg">
+                <AnimatedItem className="mx-auto mb-16 max-w-3xl text-center">
+                    <h2 className="text-4xl font-bold tracking-tighter md:text-5xl font-headline">Insights & Research</h2>
+                    <p className="mt-4 text-lg text-muted-foreground md:text-xl">
                         From our blog, the latest in AI, robotics, and industry transformation.
                     </p>
                 </AnimatedItem>
 
-                <div className="grid lg:grid-cols-2 gap-8">
+                <div className="grid lg:grid-cols-3 gap-8">
                     {founderPost && (
-                        <AnimatedItem direction="up" className="lg:col-span-2">
-                         <Link href={`/blog/${founderPost.slug}`} className="block group lg:col-span-2">
-                            <Card className="flex h-full flex-col overflow-hidden border-border/60 bg-background/90 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl md:flex-row">
-                                {(() => {
-                                    const imageMeta = PlaceHolderImages.find(p => p.id === founderPost.metadata.image);
-                                    if (!imageMeta) return null;
-                                    return (
-                                    <div className="relative h-64 w-full md:h-auto md:w-1/2">
-                                        <Image
-                                            src={imageMeta.imageUrl}
-                                            alt={founderPost.metadata.title}
-                                            fill
-                                            sizes="(min-width: 1024px) 50vw, 100vw"
-                                            className="object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20" />
+                        <AnimatedItem direction="up" className="lg:col-span-3">
+                            <Link href={`/blog/${founderPost.slug}`} className="block group">
+                                <Card className="grid md:grid-cols-2 overflow-hidden border-border/40 bg-card transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-primary/50 hover:-translate-y-1">
+                                    {(() => {
+                                        const imageMeta = PlaceHolderImages.find(p => p.id === founderPost.metadata.image);
+                                        if (!imageMeta) return null;
+                                        return (
+                                            <div className="relative h-64 md:h-full w-full">
+                                                <Image
+                                                    src={imageMeta.imageUrl}
+                                                    alt={founderPost.metadata.title}
+                                                    fill
+                                                    sizes="(min-width: 768px) 50vw, 100vw"
+                                                    className="object-cover"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                                            </div>
+                                        );
+                                    })()}
+                                    <div className="flex flex-col p-8">
+                                        <Badge variant="default" className="w-fit mb-4">Founder's Insight</Badge>
+                                        <CardTitle className="text-3xl font-bold group-hover:text-primary transition-colors font-headline">{founderPost.metadata.title}</CardTitle>
+                                        <CardDescription className="mt-4 text-lg text-muted-foreground flex-grow">{founderPost.metadata.excerpt}</CardDescription>
+                                        <CardFooter className="p-0 pt-6 text-sm text-muted-foreground flex justify-between items-center">
+                                            <div className="flex items-center gap-4">
+                                                <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4"/>{new Date(founderPost.metadata.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                                                <span className="flex items-center gap-1.5"><Clock className="h-4 w-4"/>{founderPost.readingTime}</span>
+                                            </div>
+                                            <span className="hidden sm:flex items-center gap-2 font-semibold text-primary">
+                                                Read More <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                            </span>
+                                        </CardFooter>
                                     </div>
-                                    );
-                                })()}
-                                <div className="flex flex-col p-6 md:w-1/2">
-                                    <Badge variant="secondary" className="w-fit mb-2">Founder Insight</Badge>
-                                    <CardTitle className="text-2xl group-hover:text-primary transition-colors">{founderPost.metadata.title}</CardTitle>
-                                    <CardDescription className="mt-2 flex-grow">{founderPost.metadata.excerpt}</CardDescription>
-                                    <CardFooter className="p-0 pt-4 text-xs text-muted-foreground flex justify-between">
-                                        <div className="flex items-center gap-4">
-                                            <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5"/>{new Date(founderPost.metadata.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</span>
-                                            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5"/>{founderPost.readingTime}</span>
-                                        </div>
-                                        <span className="flex items-center gap-1 group-hover:text-primary transition-colors">
-                                            Read Founder's Vision <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                                        </span>
-                                    </CardFooter>
-                                </div>
-                            </Card>
-                        </Link>
+                                </Card>
+                            </Link>
                         </AnimatedItem>
                     )}
                     
-                    <div className={`grid gap-8 lg:col-span-2 ${otherPosts.length === 1 ? 'lg:grid-cols-1' : 'lg:grid-cols-2'}`}>
-                        {otherPosts.map(post => {
-                            const image = PlaceHolderImages.find(p => p.id === post.metadata.image);
-                            return (
-                                <AnimatedItem key={post.slug}>
-                                <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-                                    <Card className="flex h-full flex-col overflow-hidden border-border/60 bg-background transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl">
+                    {otherPosts.map(post => {
+                        const image = PlaceHolderImages.find(p => p.id === post.metadata.image);
+                        return (
+                            <AnimatedItem key={post.slug} className="lg:col-span-1">
+                                <Link href={`/blog/${post.slug}`} className="block group h-full">
+                                    <Card className="flex h-full flex-col overflow-hidden border-border/40 bg-card transition-all duration-300 ease-in-out hover:shadow-xl hover:border-primary/30 hover:-translate-y-1">
                                         {image && (
                                             <div className="relative h-48">
-                                            <Image
-                                                src={image.imageUrl}
-                                                alt={post.metadata.title}
-                                                fill
-                                                sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
-                                                className="object-cover"
-                                                data-ai-hint={image.imageHint}
-                                            />
+                                                <Image
+                                                    src={image.imageUrl}
+                                                    alt={post.metadata.title}
+                                                    fill
+                                                    sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
+                                                    className="object-cover"
+                                                    data-ai-hint={image.imageHint}
+                                                />
+                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                             </div>
                                         )}
-                                        <CardHeader>
-                                        <div className="flex gap-2 mb-2">
-                                            {post.metadata.tags && post.metadata.tags.map(tag => (
-                                            <Badge key={tag} variant="secondary">{tag}</Badge>
-                                            ))}
-                                        </div>
-                                        <CardTitle className="text-lg group-hover:text-primary transition-colors">{post.metadata.title}</CardTitle>
+                                        <CardHeader className="flex-grow">
+                                            <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors leading-tight">{post.metadata.title}</CardTitle>
+                                            <CardDescription className="text-base mt-2">{post.metadata.excerpt}</CardDescription>
                                         </CardHeader>
-                                        <CardContent className="flex-grow">
-                                            <CardDescription className="text-sm">{post.metadata.excerpt}</CardDescription>
-                                        </CardContent>
-                                        <CardFooter className="text-xs text-muted-foreground">
-                                             <span className="flex items-center gap-1 group-hover:text-primary transition-colors">
-                                                Read More <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                                            </span>
+                                        <CardFooter className="text-sm text-muted-foreground pb-4 px-6">
+                                            <div className="flex items-center gap-4">
+                                                 <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4"/>{new Date(post.metadata.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                                                 <span className="flex items-center gap-1.5"><Clock className="h-4 w-4"/>{post.readingTime}</span>
+                                            </div>
                                         </CardFooter>
                                     </Card>
                                 </Link>
-                                </AnimatedItem>
-                            );
-                        })}
-                    </div>
+                            </AnimatedItem>
+                        );
+                    })}
                 </div>
+                 <AnimatedItem className="text-center mt-16">
+                    <Link href="/blog" className="text-lg font-semibold text-primary inline-flex items-center gap-2 group">
+                        View All Insights <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                </AnimatedItem>
             </div>
         </AnimatedSection>
     );

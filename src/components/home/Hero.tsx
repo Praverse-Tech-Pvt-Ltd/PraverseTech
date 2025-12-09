@@ -1,42 +1,32 @@
 
-'use client'
-import { motion, useMotionValue, useMotionTemplate, animate } from 'framer-motion';
-import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+'use client';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-
-const COLORS = ["#06B6D4", "#6D28D9", "#D946EF"];
+import { Logo } from '@/components/common/Logo';
+import { AnimatedLinkButton } from '@/components/ui/AnimatedLinkButton';
 
 export function Hero() {
-  const color = useMotionValue(COLORS[0]);
-  const backgroundImage = useMotionTemplate`radial-gradient(35% 35% at 50% 50%, hsl(var(--background)) 10%, transparent 100%), radial-gradient(100% 100% at 50% 50%, transparent 40%, ${color} 100%)`;
-
-  useEffect(() => {
-    animate(color, COLORS, {
-      ease: "easeInOut",
-      duration: 10,
-      repeat: Infinity,
-      repeatType: "mirror",
-    });
-  }, [color]);
-  
   return (
-    <section className="relative w-full py-32 md:py-48 lg:py-56 overflow-hidden">
-       <motion.div
-        style={{ backgroundImage }}
-        className="absolute inset-0 z-0 opacity-70"
-      />
-      <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <section className="relative w-full py-32 md:py-48 lg:py-56 overflow-hidden hero-gradient">
+      <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
 
       <div className="container relative z-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="flex justify-center mb-8"
+        >
+          <Logo className="w-48 h-auto" />
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground"
+          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground font-headline"
         >
-          Engineering Human-Centered Intelligence.
+          Intelligence Amplified.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -44,7 +34,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-foreground/80"
         >
-          Praverse Tech pioneers intelligent systems that learn, perceive, and collaborate — from pharma AI to humanoid robotics and next-gen bio-intelligence. Bringing Innovations to Market.
+          We build intelligent systems that learn, perceive, and collaborate to solve the world's most challenging problems.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,12 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
           className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button asChild size="lg" variant="secondary">
-            <Link href="#domains">Explore AI Domains <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-background">
-            <Link href="/healthmate">Meet HealthMate (Coming Soon)</Link>
-          </Button>
+          <AnimatedLinkButton href="#domains">Explore Our Work <ArrowRight className="ml-2 h-5 w-5" /></AnimatedLinkButton>
         </motion.div>
       </div>
     </section>
